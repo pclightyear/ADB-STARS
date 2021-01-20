@@ -150,18 +150,29 @@
                         <div class="col-12">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <div class="card img-fluid" style="width:500px">
-                                        <img class="card-img-top" src="{% static 'img/bryan-goff-RF4p4rTM-2s-unsplash-2.jpg' %}" alt="Card image" style="width:100%">
+                                    <br><br>
+                                    {% for project in project_list %}
+
+                                    <div class="card img-fluid" style="width:100%">
+                                        <img class="card-img-top" src="{% static 'img/bryan-goff-RF4p4rTM-2s-unsplash-2.jpg' %}" alt="Card image" style="width:100%; height:400px;">
                                         <div class="card-img-overlay">
-                                          <h4 class="card-title">John Doe</h4>
-                                          <p class="card-text">Some example text some example text. Some example text some example text. Some example text some example text. Some example text some example text.</p>
-                                          <a href="#" class="btn btn-primary">See Profile</a>
+                                            <br>
+                                          <h1 class="card-title">{{ forloop.counter }}. {{ project.title }}</h1>
+                                          <br>
+                                          <h3>{{ project.project_type }}</h3>
+                                          <br>
+                                          <p class="card-text text-white">{{ project.description }}</p>
+                                          <br>
+                                          <div class="form-group row">
+                                            <div class="col-4"></div>
+                                          <div class="col-4">
+                                            <a class="btn btn-outline-light btn-block" href="register">Info
+                                            </a>
+                                          </div>       
+                                        </div>
                                         </div>
                                     </div>
-                                    {% for project in project_list %}
-                                    <h1>{{ forloop.counter }}</h1>
-                                    <p>{{ project }}</p>
-                                        
+                                    <br><br>
                                     {% endfor %}
 
                                 </div>
