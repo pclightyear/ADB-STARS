@@ -11,5 +11,6 @@ urlpatterns = [
     path('login/submit', views.login_submit),
     path('home', views.home),
     path('join-project', views.join_project),
-    # path('join-project/project-info-target', view.join_project_info)
+    path('join-project/project-info-target', views.join_project_info),
+    path('manage-project', views.manage_project)
 ]

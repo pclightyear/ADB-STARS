@@ -78,7 +78,7 @@ def profile_submit(request):
 
     with connection.cursor() as cursor:
         cursor.execute(sql)
-        sucess = cursor.rowcount is 1
+        sucess = (cursor.rowcount == 1)
         res = {
             "sucess": sucess
         }
@@ -139,21 +139,72 @@ def join_project(request):
     return HttpResponse("get join projects: {}".format(res))
 
 def join_project_info(request):
-    # pid = request.GET['pid']
-    # sql = \
-    # """
-    #     SELECT *
-    #     FROM project_db
-    #     WHERE pid = {pid}
-    # """.format(pid=pid)
+    pid = request.GET['pid']
+    sql_q = \
+    """
+        SELECT *
+        FROM project_db
+        WHERE pid = {pid}
+    """.format(pid=pid)
 
-    # with connection.cursor() as cursor:
-    #     cursor.execute(sql)
-    #     res = processData(cursor)
+    with connection.cursor() as cursor:
+        cursor.execute(sql_q)
+        project = processData(cursor)
 
-    # print(res)
+    print(project)
 
-    # return HttpResponse("get join project info: {}".format(res))
+    sql_t = \
+    """
+        SELECT t.tid, t.Name as targetName, t.longitude, t.latitude
+        FROM target_db as t
+        INNER JOIN (
+            SELECT tid
+            FROM observe_db 
+            WHERE pid = {pid} 
+        ) as o
+        ON t.tid = o.tid
+    """.format(pid=pid)
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql_t)
+        targets = processData(cursor)
+
+    print(targets)
+    
+    res = {
+        "project": project[0],
+        "targets": targets
+    }
+    
+    return HttpResponse("get join project info: {}".format(res))
+
+def manage_project(request):
+    uid = request.GET['uid']
+    sql = \
+    """
+        SELECT project.pid, project.title, project.project_type, project.description, num_participants
+        FROM project_db as project
+        INNER JOIN (
+            SELECT pid
+            FROM manage_db 
+            WHERE uid = {uid}
+        ) as m
+        ON project.pid = m.pid
+        INNER JOIN (
+            SELECT participate.pid, COUNT(*) as num_participants
+            FROM participate_db as participate
+            GROUP BY participate.pid
+        ) as num_participate
+        ON project.pid = num_participate.pid
+    """.format(uid=uid)
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql)
+        res = processData(cursor)
+
+    print(res)
+
+    return HttpResponse("get join projects: {}".format(res))
 
 """
     Schedule
