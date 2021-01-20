@@ -36,7 +36,7 @@ def index(request):
 """
 
 def profile(request):
-    uid = request.GET['uid']
+    uid = str(request.session['uid'])
     sql = \
     """
         SELECT * 
@@ -54,7 +54,7 @@ def profile(request):
 
 def profile_submit(request):
     # @method_decorator(csrf_exempt, name='dispatch')
-    uid = request.POST['uid']
+    uid = str(request.session['uid'])
     username = request.POST['username']
     name = request.POST['name']
     email = request.POST['email']
@@ -99,15 +99,6 @@ def register(request):
     return render(request, 'register.html')
 
 def register_submit(request):
-    '''
-    username = 'a'#request.POST['username']
-    name = 'a'#request.POST['name']
-    email = 'a'#request.POST['email']
-    affiliation = 'a'#request.POST['affiliation']
-    title = 'a'#request.POST['title']
-    country = 'a'#request.POST['country']
-    password = 'a'#request.POST['password']
-    '''
     username = request.POST['username']
     name = request.POST['name']
     email = request.POST['email']
@@ -157,7 +148,9 @@ def login_submit(request):
 """
     Log Out
 """
-
+def logout(request):
+    del request.session['uid']
+    return HttpResponseRedirect("../home")
 """
     Home
 """
@@ -219,7 +212,7 @@ def home_project_info_target(request):
     return HttpResponse(result)
 
 def home_project_info_target_submit(request):
-    uid = request.POST['uid']
+    uid = str(request.session['uid'])
     pid = request.POST['pid']
     with connection.cursor() as cursor:
         try:
@@ -237,7 +230,7 @@ def home_project_info_target_submit(request):
     Project
 """
 def join_project(request):
-    uid = request.GET['uid']
+    uid = str(request.session['uid'])
     sql = \
     """
         SELECT p.pid, p.title, p.project_type, p.description
@@ -299,7 +292,7 @@ def join_project_info(request):
     return HttpResponse("get join project info: {}".format(res))
 
 def manage_project(request):
-    uid = request.GET['uid']
+    uid = str(request.session['uid'])
     sql = \
     """
         SELECT project.pid, project.title, project.project_type, project.description, COALESCE(num_participants, 0) as num_participants
@@ -352,7 +345,7 @@ def project_create_project_submit(request):
     targets =[{"name":"abc","longitude":100.2,"latitude":0.2}]
     '''
     #########################
-    uid = str(request.POST['uid'])
+    uid = str(request.session['uid'])
     project = request.POST['project']
     p_title = str(project['title'])
     p_project_type =  str(project['project_type'])
@@ -435,7 +428,7 @@ def project_create_project_submit(request):
     Equipment
 """
 def equipment(request):
-    uid = request.GET.get('uid')
+    uid = str(request.session['uid'])
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM own_db WHERE uid = " + str(uid))
         data = processData(cursor)
@@ -472,7 +465,7 @@ def equipment_add_equipment_submit(request):
     e_SDSS_i = str("a")
     e_SDSS_z = str("a")
     '''
-    uid = str(request.POST['uid'])
+    uid = str(request.session['uid'])
     equipment = request.POST['equipment']
     e_site = str(equipment['site'])
     e_longitude = str(equipment['longitude'])
