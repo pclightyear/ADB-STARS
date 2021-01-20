@@ -202,7 +202,7 @@ def home(request):
 
     #print(data)
     
-    return render(request,'home.html',{'project_list':results})
+    return render(request,'home.html',{'project_list':results,'username':request.session['username']})
 
 def home_project_info_target(request):
     pid = request.GET.get('pid')
