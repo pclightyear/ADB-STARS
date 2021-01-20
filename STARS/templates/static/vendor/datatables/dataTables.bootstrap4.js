@@ -142,7 +142,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 								'tabindex': settings.iTabIndex,
 								'class': 'page-link'
 							} )
-							.html( btnDisplay )
+							( btnDisplay )
 						)
 						.appendTo( container );
 
@@ -170,7 +170,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 	catch (e) {}
 
 	attach(
-		$(host).empty().html('<ul class="pagination"/>').children('ul'),
+		$(host).empty()('<ul class="pagination"/>').children('ul'),
 		buttons
 	);
 

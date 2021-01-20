@@ -7813,7 +7813,7 @@ var platform_dom$2 = {
 		// The canvas render size might have been changed (and thus the state stack discarded),
 		// we can't use save() and restore() to restore the initial state. So make sure that at
 		// least the canvas context is reset to the default state by setting the canvas width.
-		// https://www.w3.org/TR/2011/WD-html5-20110525/the-canvas-element.html
+		// https://www.w3.org/TR/2011/WD-html5-20110525/the-canvas-element
 		// eslint-disable-next-line no-self-assign
 		canvas.width = canvas.width;
 
@@ -7885,7 +7885,7 @@ var implementation = platform_dom$2._enabled ? platform_dom$2 : platform_basic;
 
 /**
  * @namespace Chart.platform
- * @see https://chartjs.gitbooks.io/proposals/content/Platform.html
+ * @see https://chartjs.gitbooks.io/proposals/content/Platform
  * @since 2.4.0
  */
 var platform = helpers$1.extend({
@@ -10469,7 +10469,7 @@ var core_helpers = function() {
 
 	helpers$1.splineCurve = function(firstPoint, middlePoint, afterPoint, t) {
 		// Props to Rob Spencer at scaled innovation for his post on splining between points
-		// http://scaledinnovation.com/analytics/splines/aboutSplines.html
+		// http://scaledinnovation.com/analytics/splines/aboutSplines
 
 		// This function must also respect "skipped" points
 
@@ -10668,7 +10668,7 @@ var core_helpers = function() {
 
 		// Scale mouse coordinates into canvas coordinates
 		// by following the pattern laid out by 'jerryj' in the comments of
-		// https://www.html5canvastutorials.com/advanced/html5-canvas-mouse-coordinates/
+		// https://www5canvastutorials.com/advanced/html5-canvas-mouse-coordinates/
 		var paddingLeft = parseFloat(helpers$1.getStyle(canvas, 'padding-left'));
 		var paddingTop = parseFloat(helpers$1.getStyle(canvas, 'padding-top'));
 		var paddingRight = parseFloat(helpers$1.getStyle(canvas, 'padding-right'));
@@ -17727,7 +17727,7 @@ var moment = createCommonjsModule(function (module, exports) {
     // ASP.NET json date format regex
     var aspNetRegex = /^(\-|\+)?(?:(\d*)[. ])?(\d+)\:(\d+)(?:\:(\d+)(\.\d*)?)?$/;
 
-    // from http://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source.html
+    // from http://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source
     // somewhat more in line with 4.4.3.2 2004 spec, but allows decimal anywhere
     // and further modified to allow for strings containing both week and day
     var isoRegex = /^(-|\+)?P(?:([-+]?[0-9,.]*)Y)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)W)?(?:([-+]?[0-9,.]*)D)?(?:T(?:([-+]?[0-9,.]*)H)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)S)?)?$/;
@@ -18056,7 +18056,7 @@ var moment = createCommonjsModule(function (module, exports) {
      * Return a human readable representation of a moment that can
      * also be evaluated to get a new moment which is the same
      *
-     * @link https://nodejs.org/dist/latest/docs/api/util.html#util_custom_inspect_function_on_objects
+     * @link https://nodejs.org/dist/latest/docs/api/util#util_custom_inspect_function_on_objects
      */
     function inspect () {
         if (!this.isValid()) {
@@ -19293,7 +19293,7 @@ var moment = createCommonjsModule(function (module, exports) {
     hooks.prototype             = proto;
 
     // currently HTML5 input type only supports 24-hour formats
-    hooks.HTML5_FMT = {
+    hooks5_FMT = {
         DATETIME_LOCAL: 'YYYY-MM-DDTHH:mm',             // <input type="datetime-local" />
         DATETIME_LOCAL_SECONDS: 'YYYY-MM-DDTHH:mm:ss',  // <input type="datetime-local" step="1" />
         DATETIME_LOCAL_MS: 'YYYY-MM-DDTHH:mm:ss.SSS',   // <input type="datetime-local" step="0.001" />

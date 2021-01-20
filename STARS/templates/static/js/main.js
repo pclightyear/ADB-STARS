@@ -3,7 +3,7 @@ function check_password () {
   var password2 = document.getElementById("password2").value;
   var submit_form = document.getElementById("submit_form");
   if (password != password2) {
-    alert("Password Fail");    
+    alert("Passwords not consist.");    
     submit_form.addEventListener("submit", function(event){
       event.preventDefault()
     });

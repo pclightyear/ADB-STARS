@@ -7809,7 +7809,7 @@ var platform_dom$2 = {
 		// The canvas render size might have been changed (and thus the state stack discarded),
 		// we can't use save() and restore() to restore the initial state. So make sure that at
 		// least the canvas context is reset to the default state by setting the canvas width.
-		// https://www.w3.org/TR/2011/WD-html5-20110525/the-canvas-element.html
+		// https://www.w3.org/TR/2011/WD-html5-20110525/the-canvas-element
 		// eslint-disable-next-line no-self-assign
 		canvas.width = canvas.width;
 
@@ -7881,7 +7881,7 @@ var implementation = platform_dom$2._enabled ? platform_dom$2 : platform_basic;
 
 /**
  * @namespace Chart.platform
- * @see https://chartjs.gitbooks.io/proposals/content/Platform.html
+ * @see https://chartjs.gitbooks.io/proposals/content/Platform
  * @since 2.4.0
  */
 var platform = helpers$1.extend({
@@ -10465,7 +10465,7 @@ var core_helpers = function() {
 
 	helpers$1.splineCurve = function(firstPoint, middlePoint, afterPoint, t) {
 		// Props to Rob Spencer at scaled innovation for his post on splining between points
-		// http://scaledinnovation.com/analytics/splines/aboutSplines.html
+		// http://scaledinnovation.com/analytics/splines/aboutSplines
 
 		// This function must also respect "skipped" points
 
@@ -10664,7 +10664,7 @@ var core_helpers = function() {
 
 		// Scale mouse coordinates into canvas coordinates
 		// by following the pattern laid out by 'jerryj' in the comments of
-		// https://www.html5canvastutorials.com/advanced/html5-canvas-mouse-coordinates/
+		// https://www5canvastutorials.com/advanced/html5-canvas-mouse-coordinates/
 		var paddingLeft = parseFloat(helpers$1.getStyle(canvas, 'padding-left'));
 		var paddingTop = parseFloat(helpers$1.getStyle(canvas, 'padding-top'));
 		var paddingRight = parseFloat(helpers$1.getStyle(canvas, 'padding-right'));
