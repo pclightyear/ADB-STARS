@@ -153,7 +153,7 @@ def login_submit(request):
 def logout(request):
     del request.session['uid']
     del request.session['username']
-    return HttpResponseRedirect("../home")
+    return HttpResponseRedirect("../login")
 """
     Home
 """
