@@ -1,3 +1,14 @@
+function check_password () {
+  var password = document.getElementById("password").value;
+  var password2 = document.getElementById("password2").value;
+  var submit_form = document.getElementById("submit_form");
+  if (password != password2) {
+    alert("Password Fail");    
+    submit_form.addEventListener("submit", function(event){
+      event.preventDefault()
+    });
+}}
+
 function repeat_password () {        
   var password = document.getElementById("password").value;
   document.getElementById("password2").value = password;        
