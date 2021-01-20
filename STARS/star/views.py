@@ -209,14 +209,14 @@ def home_project_info_target(request):
     with connection.cursor() as cursor:
         cursor.execute("SELECT tid FROM observe_db WHERE pid = " + str(pid))
         tids = processData(cursor)
-        result = []
+        targets = []
         for i in range(len(tids)):
             tid = tids[i]['tid']
             cursor.execute("SELECT * FROM target_db WHERE tid = " + str(tid))
-            result.append(processData(cursor)[0])
+            targets.append(processData(cursor)[0])
         cursor.execute("SELECT * FROM project_db WHERE pid = " + str(pid))
-        result.append(processData(cursor)[0])
-    return HttpResponse(result)
+        projectInfo = processData(cursor)
+    return render(request,'project-info-target.html',{'projectInfo':projectInfo,'targets':targets})
 
 def home_project_info_target_submit(request):
     uid = str(request.session['uid'])
@@ -231,7 +231,7 @@ def home_project_info_target_submit(request):
         except(IndexError):
             result = []
             result.append({'success' : False})
-    return HttpResponse(result)
+    return HttpResponseRedirect("../home")
 
 """
     Project
@@ -327,31 +327,6 @@ def manage_project(request):
     return HttpResponse("get manage projects: {}".format(res))
 
 def project_create_project_submit(request):
-    '''
-    uid = 0
-    p_title = "abc"
-    p_project_type =  "abc"
-    p_description = "abc"
-    p_aperture_upper_limit = "100.2"
-    p_aperture_lower_limit = "0.2"
-    p_FoV_upper_limit = "0.2"
-    p_FoV_lower_limit = "0.2"
-    p_pixel_scale_upper_limit = "0.2"
-    p_pixel_scale_lower_limit = "0.2"
-    p_mount_type =  "ss"
-    p_camera_type_colored_mono = "ss"
-    p_camera_type_cooled_uncooled = "ss"
-    p_Johnson_B = "y"
-    p_Johnson_V = "y"
-    p_Johnson_R = "y"
-    p_SDSS_u = "y"
-    p_SDSS_g = "y"
-    p_SDSS_r = "y"
-    p_SDSS_i = "y"
-    p_SDSS_z = "y"
-    targets =[{"name":"abc","longitude":100.2,"latitude":0.2}]
-    '''
-    #########################
     uid = str(request.session['uid'])
     project = request.POST['project']
     p_title = str(project['title'])
