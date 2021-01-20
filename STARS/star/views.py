@@ -4,11 +4,18 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.db import connection
 from .Declination_limit_of_location import declination_limit
 from django.utils.decorators import method_decorator
+from django.contrib import auth
 # Create your views here.
 
 """
     Utils
 """
+def getuid(request):
+    try:
+        return str(request.session['uid'])
+    except(KeyError):
+        return str(-1)
+
 def test_db(request):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM test")
@@ -36,7 +43,7 @@ def index(request):
 """
 
 def profile(request):
-    uid = str(request.session['uid'])
+    uid = getuid(request)
     sql = \
     """
         SELECT * 
@@ -54,7 +61,7 @@ def profile(request):
 
 def profile_submit(request):
     # @method_decorator(csrf_exempt, name='dispatch')
-    uid = str(request.session['uid'])
+    uid = getuid(request)
     username = request.POST['username']
     name = request.POST['name']
     email = request.POST['email']
@@ -137,11 +144,8 @@ def login_submit(request):
             cursor.execute("SELECT * FROM user_db WHERE username = \'" + username + "\' AND password = \'" + password + "\'")
             data = processData(cursor)
             data[0]['success'] = True
-            uid = data[0]['uid']
-            print("uid: " + str(uid))
-            request.session['uid'] = uid
+            request.session['uid'] = data[0]['uid']
             request.session['username'] = data[0]['username']
-            #print(request.session['username'])
         except(IndexError):
             data = []
             data.append({'success': False})
@@ -151,15 +155,18 @@ def login_submit(request):
     Log Out
 """
 def logout(request):
-    del request.session['uid']
-    del request.session['username']
+    try:
+        del request.session['uid']
+        del request.session['username']
+    except(KeyError):
+        pass
     return HttpResponseRedirect("../login")
 """
     Home
 """
 def home(request):
     print('home: ')
-    uid = str(request.session['uid'])
+    uid = getuid(request)
     print('uid: ' + uid)
     # uid = str(request.GET.get('uid'))
     available_project_id = []
@@ -167,10 +174,17 @@ def home(request):
     available_project_project_type = []
     available_project_description = []
     results = []
+    participating_pid = []
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM equipment_db AS e JOIN own_db AS o ON e.eid = o.eid WHERE o.uid = " + uid)
         equipments = processData(cursor)
-
+        cursor.execute("SELECT pid FROM participate_db WHERE uid = " + uid)
+        participates = processData(cursor)
+        if not participates:
+            participating_pid = []
+        else:
+            for participate in participates:
+                participating_pid.append(participate['pid'])
         for equipment in equipments:
             longitude = equipment['longitude']
             latitude = equipment['latitude']
@@ -193,7 +207,7 @@ def home(request):
                 )
                 projects = processData(cursor)
                 for project in projects:
-                    if project['pid'] in available_project_id:
+                    if project['pid'] in available_project_id or project['pid'] in participating_pid:
                         continue
                     else:
                         available_project_id.append(project['pid'])
@@ -201,8 +215,7 @@ def home(request):
 
 
     #print(data)
-    
-    return render(request,'home.html',{'project_list':results,'username':request.session['username']})
+    return render(request,'home.html',{'project_list':results})
 
 def home_project_info_target(request):
     pid = request.GET.get('pid')
@@ -219,7 +232,7 @@ def home_project_info_target(request):
     return render(request,'project-info-target.html',{'projectInfo':projectInfo,'targets':targets})
 
 def home_project_info_target_submit(request):
-    uid = str(request.session['uid'])
+    uid = getuid(request)
     pid = request.POST['pid']
     with connection.cursor() as cursor:
         try:
@@ -237,7 +250,7 @@ def home_project_info_target_submit(request):
     Project
 """
 def join_project(request):
-    uid = str(request.session['uid'])
+    uid = getuid(request)
     sql = \
     """
         SELECT p.pid, p.title, p.project_type, p.description
@@ -299,7 +312,7 @@ def join_project_info(request):
     return HttpResponse("get join project info: {}".format(res))
 
 def manage_project(request):
-    uid = str(request.session['uid'])
+    uid = getuid(request)
     sql = \
     """
         SELECT project.pid, project.title, project.project_type, project.description, COALESCE(num_participants, 0) as num_participants
@@ -327,7 +340,7 @@ def manage_project(request):
     return HttpResponse("get manage projects: {}".format(res))
 
 def project_create_project_submit(request):
-    uid = str(request.session['uid'])
+    uid = getuid(request)
     project = request.POST['project']
     p_title = str(project['title'])
     p_project_type =  str(project['project_type'])
@@ -406,7 +419,7 @@ def project_create_project_submit(request):
     Schedule
 """
 def schedule(request):
-    uid = request.GET['uid']
+    uid = getuid(request)
     sql_p = \
     """
         SELECT p.pid, p.title
@@ -448,42 +461,14 @@ def schedule(request):
     Equipment
 """
 def equipment(request):
-    uid = str(request.session['uid'])
+    uid = getuid(request)
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM own_db WHERE uid = " + str(uid))
         data = processData(cursor)
     return HttpResponse(request,"equipment.html",{"equipments":data})
 
 def equipment_add_equipment_submit(request):
-    '''
-    uid = str(0)
-    e_site = str("adc")
-    e_longitude = str(0.1)
-    e_latitude = str(0.1)
-    e_altitude = str(0.1)
-    e_time_zone = str("adc")
-    e_daylight_saving = str("a")
-    e_water_vapor = str(0.1)
-    e_light_pollution = str(0.1)
-    e_aperture = str(0.1)
-    e_fov = str(0.1)
-    e_pixel_scale = str(0.1)
-    e_tracking_accuracy = str(0.1)
-    e_limiting_magnitude = str(0.1)
-    e_elevation_limit = str(0.1)
-    e_mount_type = str("adc")
-    e_camera_type_colored_mono = str("adc")
-    e_camera_type_cooled_uncooled = str("adc")
-    e_Johnson_B = str("a")
-    e_Johnson_V = str("a")
-    e_Johnson_R = str("a")
-    e_SDSS_u = str("a")
-    e_SDSS_g = str("a")
-    e_SDSS_r = str("a")
-    e_SDSS_i = str("a")
-    e_SDSS_z = str("a")
-    '''
-    uid = str(request.session['uid'])
+    uid = getuid(request)
     equipment = request.POST['equipment']
     e_site = str(equipment['site'])
     e_longitude = str(equipment['longitude'])
