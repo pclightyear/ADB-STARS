@@ -293,7 +293,7 @@ def manage_project(request):
     uid = request.GET['uid']
     sql = \
     """
-        SELECT project.pid, project.title, project.project_type, project.description, num_participants
+        SELECT project.pid, project.title, project.project_type, project.description, COALESCE(num_participants, 0) as num_participants
         FROM project_db as project
         INNER JOIN (
             SELECT pid
@@ -301,7 +301,7 @@ def manage_project(request):
             WHERE uid = {uid}
         ) as m
         ON project.pid = m.pid
-        INNER JOIN (
+        LEFT JOIN (
             SELECT participate.pid, COUNT(*) as num_participants
             FROM participate_db as participate
             GROUP BY participate.pid
@@ -315,7 +315,7 @@ def manage_project(request):
 
     print(res)
 
-    return HttpResponse("get join projects: {}".format(res))
+    return HttpResponse("get manage projects: {}".format(res))
 
 def project_create_project_submit(request):
     '''
