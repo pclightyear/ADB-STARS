@@ -134,12 +134,14 @@ def login_submit(request):
     password = request.POST['password']
     with connection.cursor() as cursor:
         try:
-            cursor.execute("SELECT uid FROM user_db WHERE username = \'" + username + "\' AND password = \'" + password + "\'")
+            cursor.execute("SELECT * FROM user_db WHERE username = \'" + username + "\' AND password = \'" + password + "\'")
             data = processData(cursor)
             data[0]['success'] = True
             uid = data[0]['uid']
             print("uid: " + str(uid))
             request.session['uid'] = uid
+            request.session['username'] = data[0]['username']
+            #print(request.session['username'])
         except(IndexError):
             data = []
             data.append({'success': False})
@@ -150,6 +152,7 @@ def login_submit(request):
 """
 def logout(request):
     del request.session['uid']
+    del request.session['username']
     return HttpResponseRedirect("../home")
 """
     Home
@@ -199,7 +202,7 @@ def home(request):
 
     #print(data)
     
-    return render(request,'home.html',{'project-list':results})
+    return render(request,'home.html',{'project_list':results})
 
 def home_project_info_target(request):
     pid = request.GET.get('pid')
@@ -427,6 +430,9 @@ def project_create_project_submit(request):
 """
     Schedule
 """
+def schedule(request):
+    
+    return HttpResponse("test schedule")
 
 """
     Equipment
