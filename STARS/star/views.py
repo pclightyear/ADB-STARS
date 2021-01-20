@@ -395,7 +395,7 @@ def project_create_project_submit(request):
         except(IndexError):
             result = []
             result.append({'success' : False})
-    return HttpResponse(result)
+    return HttpResponseRedirect("../manage-project.html")
 
 
 
@@ -452,9 +452,7 @@ def equipment(request):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM own_db WHERE uid = " + str(uid))
         data = processData(cursor)
-    print(data[0])
-    reponse = {"equipments": data}
-    return HttpResponse(reponse)
+    return HttpResponse(request,"equipment.html",{"equipments":data})
 
 def equipment_add_equipment_submit(request):
     '''
@@ -533,7 +531,7 @@ def equipment_add_equipment_submit(request):
         except(IndexError):
             result = []
             result.append({'success' : False})
-    return HttpResponse(result)
+    return HttpResponseRedirect("../equipment.html")
 
 """
     Relation
