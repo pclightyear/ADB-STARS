@@ -138,6 +138,7 @@ def login(request):
     return render(request, 'login.html')
     
 def login_submit(request):
+    print('login submit')
     username = request.POST['username']
     password = request.POST['password']
     with connection.cursor() as cursor:
@@ -145,10 +146,13 @@ def login_submit(request):
             cursor.execute("SELECT uid FROM user_db WHERE username = \'" + username + "\' AND password = \'" + password + "\'")
             data = processData(cursor)
             data[0]['success'] = True
+            uid = data[0]['uid']
+            print("uid: " + str(uid))
+            request.session['uid'] = uid
         except(IndexError):
             data = []
             data.append({'success': False})
-    return HttpResponse(data)
+    return HttpResponseRedirect("../home")
 
 """
     Log Out
@@ -158,7 +162,10 @@ def login_submit(request):
     Home
 """
 def home(request):
-    uid = str(request.GET.get('uid'))
+    print('home: ')
+    uid = str(request.session['uid'])
+    print('uid: ' + uid)
+    # uid = str(request.GET.get('uid'))
     available_project_id = []
     results = []
     with connection.cursor() as cursor:
