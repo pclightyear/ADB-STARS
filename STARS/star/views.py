@@ -160,6 +160,9 @@ def home(request):
     print('uid: ' + uid)
     # uid = str(request.GET.get('uid'))
     available_project_id = []
+    available_project_title = []
+    available_project_project_type = []
+    available_project_description = []
     results = []
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM equipment_db AS e JOIN own_db AS o ON e.eid = o.eid WHERE o.uid = " + uid)
@@ -195,7 +198,8 @@ def home(request):
 
 
     #print(data)
-    return HttpResponse(results)
+    
+    return render(request,'home.html',{'project-list':results})
 
 def home_project_info_target(request):
     pid = request.GET.get('pid')
