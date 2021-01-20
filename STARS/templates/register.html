@@ -1,5 +1,6 @@
-<!DOCTYPE html>
 {% load static %}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -175,8 +176,8 @@
                                     <br><br>  
                                     <h1>Register</h1>
                                     <br><br>  
-                                <form action="register/submit/" method="post" id="submit_form">
-                                    <img class="img-fluid rounded-circle" src="img/avatar.png" alt="avatar" width="100" height="100"> 
+                                <form action="register/submit" method="post" id="submit_form">
+                                    <img class="img-fluid rounded-circle" src="{% static 'img/avatar.png' %}" alt="avatar" width="100" height="100"> 
                                     <br><br>
 
                                     <!-- <input type="file" id="myfile" name="myfile" multiple> -->
@@ -263,4 +264,4 @@
 </body>
 
 </html>
-<script src="js/main.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
