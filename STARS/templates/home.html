@@ -131,7 +131,7 @@
                         </li>
                         <li class="nav-item dropdown no-arrow">
                             <a href="profile" class="nav-link dropdown-toggle">
-                                <span class="mr-2 d-none d-lg-inline">{{request.user}}</span>
+                                <span class="mr-2 d-none d-lg-inline">{{ username }}</span>
                                 <img class="img-profile rounded-circle"
                                     src="{% static '/img/avatar.png' %}">
                             </a>
@@ -150,51 +150,20 @@
                         <div class="col-12">
                             <div class="p-5">
                                 <div class="text-center">
+                                    <div class="card img-fluid" style="width:500px">
+                                        <img class="card-img-top" src="{% static 'img/bryan-goff-RF4p4rTM-2s-unsplash-2.jpg' %}" alt="Card image" style="width:100%">
+                                        <div class="card-img-overlay">
+                                          <h4 class="card-title">John Doe</h4>
+                                          <p class="card-text">Some example text some example text. Some example text some example text. Some example text some example text. Some example text some example text.</p>
+                                          <a href="#" class="btn btn-primary">See Profile</a>
+                                        </div>
+                                    </div>
                                     {% for project in project_list %}
+                                    <h1>{{ forloop.counter }}</h1>
                                     <p>{{ project }}</p>
                                         
                                     {% endfor %}
-                                    <div id="demo" class="carousel slide" data-ride="carousel">
-                                        <ul class="carousel-indicators">
-                                          <li data-target="#demo" data-slide-to="0" class="active"></li>
-                                          <li data-target="#demo" data-slide-to="1"></li>
-                                          <li data-target="#demo" data-slide-to="2"></li>
-                                        </ul>
-                                        <div class="carousel-inner">
-                                            
-                                          <div class="carousel-item active">
-                                            <a href="join-project">
-                                              <img src="{% static 'img/bryan-goff-RF4p4rTM-2s-unsplash-2.jpg' %}" alt="Project" width="100%" height="100%">
-                                            <div class="carousel-caption">
-                                            
-                                              <h1>Project</h1>
-                                              <h4>Project Type</h4>
-                                              <p>Project Description</p>                                            
-                                            </div>   
-                                          </div>
-                                            </a>
-                                          <div class="carousel-item">
-                                            <img src="img/nathan-anderson-KvgB81s4dF0-unsplash.jpg" alt="Project" width="100%" height="100%">
-                                            <div class="carousel-caption">
-                                              <h3>Project</h3>
-                                              <p>Project Description</p>
-                                            </div>   
-                                          </div>
-                                          <div class="carousel-item">
-                                            <img src="img/jeremy-thomas-4dpAqfTbvKA-unsplash.jpg" alt="Project" width="100%" height="100%">
-                                            <div class="carousel-caption">
-                                              <h3>Project</h3>
-                                              <p>Project Description</p>
-                                            </div>   
-                                          </div>
-                                        </div>
-                                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                                          <span class="carousel-control-prev-icon"></span>
-                                        </a>
-                                        <a class="carousel-control-next" href="#demo" data-slide="next">
-                                          <span class="carousel-control-next-icon"></span>
-                                        </a>
-                                      </div>
+
                                 </div>
                             </div>
                         </div>
