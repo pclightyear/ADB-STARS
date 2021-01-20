@@ -215,7 +215,7 @@ def home(request):
 
 
     #print(data)
-    return render(request,'home.html',{'project_list':results})
+    return render(request,'home.html',{'projects':results})
 
 def home_project_info_target(request):
     pid = request.GET.get('pid')
