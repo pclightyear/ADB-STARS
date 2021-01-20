@@ -95,6 +95,9 @@ def profile_submit(request):
 """
     Register
 """
+def register(request):
+    return render(request, 'register.html')
+
 def register_submit(request):
     '''
     username = 'a'#request.POST['username']
