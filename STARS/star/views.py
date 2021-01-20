@@ -1,8 +1,11 @@
+from copy import deepcopy
+
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 
 from django.db import connection
 from .Declination_limit_of_location import declination_limit
+from .Astroplan_calculations import astroplan_calculations
 from django.utils.decorators import method_decorator
 # Create your views here.
 
@@ -39,18 +42,19 @@ def profile(request):
     uid = str(request.session['uid'])
     sql = \
     """
-        SELECT * 
+        SELECT username, name, email, affiliation, title, country
         FROM user_db 
         WHERE uid = {uid} 
     """.format(uid=uid)
 
     with connection.cursor() as cursor:
         cursor.execute(sql)
-        res = processData(cursor)
+        res = processData(cursor)[0]
 
     print(res)
 
-    return HttpResponse("get profile: {}".format(res))
+    return render(request, 'profile.html', res)
+    # return HttpResponse("get profile: {}".format(res))
 
 def profile_submit(request):
     # @method_decorator(csrf_exempt, name='dispatch')
@@ -79,17 +83,14 @@ def profile_submit(request):
 
     with connection.cursor() as cursor:
         cursor.execute(sql)
-        sucess = (cursor.rowcount == 1)
+        success = (cursor.rowcount == 1)
         res = {
-            "sucess": sucess
+            "success": success
         }
     
     print(res)
 
-    if sucess:
-        return HttpResponse("update profile sucess: {}".format(res))
-    else:
-        return HttpResponse("update profile fail: {}".format(res))
+    return HttpResponseRedirect("../profile")
     
 
 """
@@ -202,7 +203,7 @@ def home(request):
 
     #print(data)
     
-    return render(request,'home.html',{'project_list':results,'username':request.session['username']})
+    return render(request,'home.html',{'projects':results,'username':request.session['username']})
 
 def home_project_info_target(request):
     pid = request.GET.get('pid')
@@ -469,6 +470,95 @@ def schedule(request):
     }
     
     return HttpResponse("get schedule choose form: {}".format(res))
+
+def target_schedule(request):
+    pid = request.GET['pid']
+    eid = request.GET['eid']
+
+    sql_p = \
+    """
+        SELECT pid, title
+        FROM project_db
+        WHERE pid={pid}
+    """.format(pid=pid)
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql_p)
+        project = processData(cursor)[0]
+
+    sql_e = \
+    """
+        SELECT o."UhaveE_ID", o.latitude, o.longitude, o.altitude, e.elevation_limit
+        FROM own_db as o
+        INNER JOIN (
+            SELECT eid, elevation_limit
+            FROM equipment_db 
+            WHERE eid = {eid} 
+        ) as e
+        ON o.eid = e.eid
+        WHERE o.eid={eid}
+    """.format(eid=eid)
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql_e)
+        equipment = processData(cursor)[0]
+
+    print(equipment)
+    UhaveE_ID = equipment['UhaveE_ID']
+    latitude = equipment['latitude']
+    longitude = equipment['longitude']
+    altitude = equipment['altitude']
+    elevation_limit = equipment['elevation_limit']
+
+    sql_t = \
+    """
+        SELECT t.tid, t.name as targetName, t.longitude, t.latitude
+        FROM target_db as t
+        INNER JOIN (
+            SELECT tid
+            FROM observe_db 
+            WHERE pid = {pid} 
+        ) as o
+        ON t.tid = o.tid
+    """.format(pid=pid)
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql_t)
+        targets = processData(cursor)
+
+    for t in targets:
+        TID = t['tid']
+        ra = t['longitude'] # longitude
+        dec = t['latitude'] # latitude
+
+        t_start, t_end = astroplan_calculations(
+            UhaveE_ID,
+            latitude,
+            longitude,
+            altitude,
+            elevation_limit,
+            TID,
+            ra,
+            dec
+        )
+
+        # print(t_start)
+        # print(t_end)
+
+        t['observationTime_Begin'] = t_start
+        t['observationTime_End'] = t_end
+
+    schedules = deepcopy(targets)
+
+    res = {
+        "project": project,
+        "schedules": schedules
+    }
+
+    print(res)
+
+    return HttpResponse("get target schedule: {}".format(res))
+
 """
     Equipment
 """
