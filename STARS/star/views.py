@@ -421,7 +421,45 @@ def project_create_project_submit(request):
 """
     Schedule
 """
+def schedule(request):
+    uid = request.GET['uid']
+    sql_p = \
+    """
+        SELECT p.pid, p.title
+        FROM project_db as p
+        INNER JOIN (
+            SELECT pid
+            FROM participate_db 
+            WHERE uid = {uid} 
+        ) as j
+        ON p.pid = j.pid
+    """.format(uid=uid)
 
+    with connection.cursor() as cursor:
+        cursor.execute(sql_p)
+        projects = processData(cursor)
+
+    print(projects)
+
+    sql_e = \
+    """
+        SELECT eid, site
+        FROM own_db
+        WHERE uid = {uid} 
+    """.format(uid=uid)
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql_e)
+        equipments = processData(cursor)
+
+    print(equipments)
+    
+    res = {
+        "projects": projects,
+        "equipments": equipments
+    }
+    
+    return HttpResponse("get schedule choose form: {}".format(res))
 """
     Equipment
 """
