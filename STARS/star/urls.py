@@ -9,6 +9,7 @@ urlpatterns = [
     path('profile/submit', views.profile_submit),
     path('register', views.register),
     path('register/submit', views.register_submit),
+    path('login', views.login),
     path('login/submit', views.login_submit),
     path('home', views.home),
     path('home/project-info-target', views.home_project_info_target),

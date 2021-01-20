@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 
 from django.db import connection
 from .Declination_limit_of_location import declination_limit
@@ -130,11 +130,13 @@ def register_submit(request):
         except(IndexError):
             result = []
             result.append({'success' : False})
-    return HttpResponse(result)
-
+    return HttpResponseRedirect("../login")
 """
     Log In
 """
+def login(request):
+    return render(request, 'login.html')
+    
 def login_submit(request):
     username = request.POST['username']
     password = request.POST['password']
