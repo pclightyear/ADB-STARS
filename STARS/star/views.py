@@ -409,7 +409,7 @@ def project_create_project_submit(request):
         except(IndexError):
             result = []
             result.append({'success' : False})
-    return HttpResponseRedirect("../manage-project.html")
+    return HttpResponseRedirect("../manage-project")
 
 
 
@@ -606,7 +606,7 @@ def equipment_add_equipment_submit(request):
         except(IndexError):
             result = []
             result.append({'success' : False})
-    return HttpResponseRedirect("../equipment.html")
+    return HttpResponseRedirect("../equipment")
 
 """
     Relation
