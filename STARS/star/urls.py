@@ -20,6 +20,7 @@ urlpatterns = [
     path('manage-project', views.manage_project),
     path('project/create-project/submit', views.project_create_project_submit),
     path('schedule', views.schedule),
+    path('schedule/target_schedule', views.target_schedule),
     path('equipment/', views.equipment),
     path('equipment/add-equipment/submit', views.equipment_add_equipment_submit),
 ]
