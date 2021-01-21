@@ -230,7 +230,7 @@ def home_project_info_target(request):
             targets.append(processData(cursor)[0])
         cursor.execute("SELECT * FROM project_db WHERE pid = " + str(pid))
         projectInfo = processData(cursor)
-    return render(request,'project-info-target.html',{'projectInfo':projectInfo,'targets':targets})
+    return render(request,'project-info-target.html',{'projectInfo':projectInfo[0],'targets':targets})
 
 def home_project_info_target_submit(request):
     uid = getuid(request)
@@ -340,7 +340,10 @@ def manage_project(request):
 
     return HttpResponse("get manage projects: {}".format(res))
 
-def project_create_project_submit(request):
+def create_project(request):
+    return render(request, 'create-project.html')
+
+def create_project_submit(request):
     uid = getuid(request)
     project = request.POST['project']
     p_title = str(project['title'])
@@ -555,7 +558,11 @@ def equipment(request):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM own_db WHERE uid = " + str(uid))
         data = processData(cursor)
-    return HttpResponse(request,"equipment.html",{"equipments":data})
+    # TODO: fix front end static file
+    return render(request,"all-equipment.html",{"equipments":data})
+
+def add_equipment(request):
+    return render(request, 'add-equipment.html')
 
 def equipment_add_equipment_submit(request):
     uid = getuid(request)
