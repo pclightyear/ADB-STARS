@@ -33,7 +33,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="\home">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <!-- <i class="fas fa-laugh-wink"></i> -->
                 </div>
@@ -45,7 +45,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="\home">
+                <a class="nav-link" href="/home">
                     <i class="fa fa-home"></i>
                     <span>Home</span></a>
             </li>
@@ -53,23 +53,23 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
             <li class="nav-item">
-                <a class="nav-link" href="\schedule">
+                <a class="nav-link" href="/join-project">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Participate Project</span></a>
+                    <span>Join Project</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="\manage-project">
+                <a class="nav-link" href="/manage-project">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Manage Project</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="\create-project">
+                <a class="nav-link" href="/create-project">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Create Project</span></a>
             </li>
             <hr class="sidebar-divider">
             <li class="nav-item">
-                <a class="nav-link" href="\equipment">
+                <a class="nav-link" href="/equipment">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Equipment</span></a>
             </li>
@@ -78,14 +78,14 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="\schedule">
+                <a class="nav-link" href="/schedule">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Schadule</span></a>
             </li>
             <hr class="sidebar-divider">
 
             <li class="nav-item">
-                <a class="nav-link" href="\relation">
+                <a class="nav-link" href="/relation">
                     <i class="fas fa-project-diagram"></i>
                     <span>Relation</span></a>
             </li>
@@ -108,7 +108,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow fixed-top">
-                    <a class="navbar-brand text-center text-white" href="home">STAR</a>
+                    <a class="navbar-brand text-center text-white" href="/home">STAR</a>
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -117,19 +117,19 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown no-arrow">
-                            <a href="\register" class="nav-link dropdown-toggle">Register</a>
+                            <a href="/register" class="nav-link dropdown-toggle">Register</a>
                         </li>
                         {% if request.session.username %}
                         <li class="nav-item dropdown no-arrow">
-                            <a href="\logout" class="nav-link dropdown-toggle">Log Out</a>
+                            <a href="/logout" class="nav-link dropdown-toggle">Log Out</a>
                         </li>
                         {% else %}
                         <li class="nav-item dropdown no-arrow">
-                            <a href="\login" class="nav-link dropdown-toggle">Log In</a>
+                            <a href="/login" class="nav-link dropdown-toggle">Log In</a>
                         </li>
                         {% endif %}
                         <li class="nav-item dropdown no-arrow">
-                            <a href="\profile" class="nav-link dropdown-toggle">
+                            <a href="/profile" class="nav-link dropdown-toggle">
                                 <span class="mr-2 d-none d-lg-inline">{{ request.session.username }}</span>
                                 <img class="img-profile rounded-circle"
                                     src="{% static '/img/avatar.png' %}">
