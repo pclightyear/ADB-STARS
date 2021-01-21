@@ -15,6 +15,7 @@ from neo4j import GraphDatabase
 """
     Utils
 """
+
 def _create_and_return_greeting(tx, message):
         result = tx.run("CREATE (a:Greeting) "
                         "SET a.message = $message "
@@ -243,7 +244,7 @@ def home_project_info_target(request):
         targets = []
         for i in range(len(tids)):
             tid = tids[i]['tid']
-            cursor.execute("SELECT * FROM target_db WHERE tid = " + str(tid))
+            cursor.execute("SELECT t.tid, t.Name as targetName, t.longitude, t.latitude FROM target_db as t WHERE t.tid = " + str(tid))
             targets.append(processData(cursor)[0])
         cursor.execute("SELECT * FROM project_db WHERE pid = " + str(pid))
         projectInfo = processData(cursor)
