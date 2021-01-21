@@ -216,17 +216,17 @@
                                             <div class="form-group row">
                                                 <div class="col">
                                                     <label class="" for="pixel_scale_upper_limit">Pixel Scale Upper Limit</label>
-                                                    <input type="number" step="1" class="form-control" id="pixel_scale_upper_limit">
+                                                    <input type="number" step="1" class="form-control" id="pixel_scale_upper_limit" value="{{ projectInfo.pixel_scale_upper_limit }}" readonly>
                                                 </div>
                                                 <div class="col">
                                                     <label class="" for="pixel_scale_lower_limit">Pixel Scale Lower Limit</label>
-                                                    <input type="number" step="0.1" class="form-control" id="pixel_scale_lower_limit">
+                                                    <input type="number" step="0.1" class="form-control" id="pixel_scale_lower_limit" value="{{ projectInfo.pixel_scale_lower_limit }}" readonly>
                                                 </div>
                                             </div>                                        
                                             <div class="form-group row">
                                                 <div class="col">
                                                     <label for="colored-mono" class="">Mount Type (German, Fork, Theodolite)</label>
-                                                    <select class="form-control" id="mount_type">
+                                                    <select class="form-control" id="mount_type" value="{{ projectInfo.mount_type }}" disabled>
                                                         <option>german</option>
                                                         <option>fork</option>
                                                         <option>theodolite</option>
@@ -236,14 +236,14 @@
                                             <div class="form-group row">
                                                 <div class="col">
                                                     <label for="colored_mono" class="">Camera Type (Colored, Mono)</label>
-                                                    <select class="form-control" id="colored_mono">
+                                                    <select class="form-control" id="colored_mono" value="{{ projectInfo.colored_mono }}" disabled>
                                                         <option>colored</option>
                                                         <option>mono</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">                
                                                     <label for="cooled_uncooled" class="">Camera Type (Cooled, Uncooled)</label>
-                                                    <select class="form-control" id="cooled_uncooled">
+                                                    <select class="form-control" id="cooled_uncooled" value="{{ projectInfo.cooled_uncooled }}" disabled>
                                                         <option>colored</option>
                                                         <option>uncooled</option>
                                                     </select>
@@ -252,21 +252,21 @@
                                             <div class="form-group row">
                                                 <div class="col">                
                                                     <label for="johnson_b" class="">Johnson B</label>
-                                                    <select class="form-control" id="johnson_b">
+                                                    <select class="form-control" id="johnson_b" value="{{ projectInfo.johnson_b }}" disabled>
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">   
                                                     <label for="johnson_v" class="">Johnson V</label>
-                                                    <select class="form-control" id="johnson_v">
+                                                    <select class="form-control" id="johnson_v" value="{{ projectInfo.johnson_v }}" disabled>
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">        
                                                     <label for="johnson_r" class="">Johnson R</label>
-                                                    <select class="form-control" id="johnson_r">
+                                                    <select class="form-control" id="johnson_r" value="{{ projectInfo.johnson_r }}" disabled>
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
@@ -275,35 +275,35 @@
                                             <div class="form-group row">
                                                 <div class="col">                
                                                     <label for="sdss_u" class="">SDSS u</label>
-                                                    <select class="form-control" id="sdss_u">
+                                                    <select class="form-control" id="sdss_u" value="{{ projectInfo.sdss_u }}" disabled>
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">                
                                                     <label for="sdss_g" class="">SDSS g</label>
-                                                    <select class="form-control" id="sdss_g">
+                                                    <select class="form-control" id="sdss_g" value="{{ projectInfo.sdss_g }}" disabled>
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">                
                                                     <label for="sdss_r" class="">SDSS r</label>
-                                                    <select class="form-control" id="sdss_r">
+                                                    <select class="form-control" id="sdss_r" value="{{ projectInfo.sdss_r }}" disabled>
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">                
                                                     <label for="sdss_i" class="">SDSS i</label>
-                                                    <select class="form-control" id="sdss_i">
+                                                    <select class="form-control" id="sdss_i" value="{{ projectInfo.sdss_i }}" disabled>
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">                
                                                     <label for="sdss_z" class="">SDSS z</label>
-                                                    <select class="form-control" id="sdss_z">
+                                                    <select class="form-control" id="sdss_z" value="{{ projectInfo.sdss_z }}" disabled>
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
@@ -317,6 +317,8 @@
                                                 <table class="text-white table table-active table-bordered" id="target_table">
                                                     <thead>
                                                         <tr>
+                                                            <th>TID
+                                                            </th>
                                                             <th>Target
                                                             </th>
                                                             <th>RA (Longitude)</th>
@@ -324,24 +326,17 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        {% for target in targets %}
                                                         <tr>
-                                                            <th><input type="text"  class="form-control" id="target_name"></th>
-                                                            <th><input type="number" step="0.01"  class="form-control" id="ra"></th>
-                                                            <th><input type="number" step="0.01"  class="form-control" id="dec"></th>
+                                                            <th><input type="text"  class="form-control" id="target_name" value="{{ target.tid }}" disabled></th>
+                                                            <th><input type="text"  class="form-control" id="target_name" value="{{ target.targetName }}" disabled></th>
+                                                            <th><input type="number" step="0.01"  class="form-control" id="ra" value="{{ target.longitude }}" disabled></th>
+                                                            <th><input type="number" step="0.01"  class="form-control" id="dec" value="{{ target.latitude }}" disabled></th>
                                                         </tr>
+                                                        {% endfor %}
                                                     </tbody>
                                                 </table>
-                                                <div>
-                                                    <br><br>
-                                                    <div class="row">
-                                                    <div class="col-4"></div>
-                                                    <div class="col-4">
-                                                    <button type="button" class="btn btn-outline-light btn-block" onclick="add_target_table()">Add Target</button>
-                                                    </div>
-                                                    </div>
-                                                </div>
-        
-
+                                                
                                             </div>
 
                                         </div>
