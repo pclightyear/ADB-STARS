@@ -149,7 +149,7 @@
                             <div class="p-5">
                                 <div class="text-center text-white">
                                     <br><br>  
-                                    <h1>Project Info Target</h1>
+                                    <h1>Create Project</h1>
                                     <br><br>  
                                     <ul class="nav nav-tabs" role="tablist">
                                         <li class="nav-item">
@@ -158,76 +158,70 @@
                                         <li class="nav-item">
                                           <a class="nav-link text-white" data-toggle="pill" href="#target">Target</a>
                                         </li>
-                                        <li class="nav-item">
-                                          <a class="nav-link text-white" data-toggle="pill" href="#participant">Participant</a>
-                                        </li>
+
                                     </ul>
                                     <br><br>
                                     
-                                    <form action="submit/">
+                                    <form action="/create-project/submit" method="post">
                                         <div class="tab-content">
                                             <div id="project" class="container tab-pane active"><br>
                                                 <h3>Project</h3><br><br>
                                               <div class="form-group row">                  
                                                 <div class="col">
-                                                    <label class="" for="project_tittle">Project Tittle</label>
-                                                    <input type="text"  class="form-control" id="project_tittle" placeholder="">
+                                                    <label class="" for="project_tittle"> Tittle</label>
+                                                    <input type="text"  class="form-control" id="project_tittle" name="project_tittle" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="form-group row">                  
                                                 <div class="col">
-                                                    <label class="" for="project_description">Project Description</label>
-                                                    <input type="text"  class="form-control" id="project_description" placeholder="">
+                                                    <label class="" for="description"> Description</label>
+                                                    <input type="text"  class="form-control" id="description" name="description" placeholder="Description">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col">
                                                     <label class="" for="project_type">Project Type</label>
-                                                    <select class="form-control" id="project_type">
+                                                    <select class="form-control" id="project_type" name="project_type" placeholder="">
                                                         <option>regular</option>
                                                         <option>transient
                                                         </option>
                                                     </select>
                                                 </div>
-                                                <div class="col">
-                                                    <label class="" for="pi">PI</label>
-                                                    <input type="number" step="1" class="form-control" id="pi">
-                                                </div>
-                                            </div>                                    
+                                            </div>
                                             <div class="form-group row">
                                                 <div class="col">
                                                     <label class="" for="aperture_upper_limit">Aperture Upper Limit</label>
-                                                    <input type="number" step="1" class="form-control" id="aperture_upper_limit">
+                                                    <input type="number" step="1" class="form-control" id="aperture_upper_limit" name="aperture_upper_limit">
                                                 </div>
                                                 <div class="col">
                                                     <label class="" for="aperture_lower_limit">Aperture Lower Limit</label>
-                                                    <input type="number" step="1" class="form-control" id="aperture_lower_limit">
+                                                    <input type="number" step="1" class="form-control" id="aperture_lower_limit" name="aperture_lower_limit">
                                                 </div>          
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col">
-                                                    <label class="" for="fov_upper_limit">Fo V Upper Limit</label>
-                                                    <input type="number" step="100" class="form-control" id="fov_upper_limit">
+                                                    <label class="" for="FoV_upper_limit">Fo V Upper Limit</label>
+                                                    <input type="number" step="100" class="form-control" id="FoV_upper_limit" name="FoV_upper_limit">
                                                 </div>
                                                 <div class="col">
-                                                    <label class="" for="fov_lower_limit">Fo V Lower Limit</label>
-                                                    <input type="number" step="1" class="form-control" id="fov_lower_limit">
+                                                    <label class="" for="FoV_lower_limit">Fo V Lower Limit</label>
+                                                    <input type="number" step="1" class="form-control" id="FoV_lower_limit" name="FoV_lower_limit">
                                                 </div>
                                             </div>   
                                             <div class="form-group row">
                                                 <div class="col">
                                                     <label class="" for="pixel_scale_upper_limit">Pixel Scale Upper Limit</label>
-                                                    <input type="number" step="1" class="form-control" id="pixel_scale_upper_limit">
+                                                    <input type="number" step="1" class="form-control" id="pixel_scale_upper_limit" name="pixel_scale_upper_limit">
                                                 </div>
                                                 <div class="col">
                                                     <label class="" for="pixel_scale_lower_limit">Pixel Scale Lower Limit</label>
-                                                    <input type="number" step="0.1" class="form-control" id="pixel_scale_lower_limit">
+                                                    <input type="number" step="0.1" class="form-control" id="pixel_scale_lower_limit" name="pixel_scale_lower_limit">
                                                 </div>
                                             </div>                                        
                                             <div class="form-group row">
                                                 <div class="col">
                                                     <label for="colored-mono" class="">Mount Type (German, Fork, Theodolite)</label>
-                                                    <select class="form-control" id="mount_type">
+                                                    <select class="form-control" id="mount_type" name="mount_type">
                                                         <option>german</option>
                                                         <option>fork</option>
                                                         <option>theodolite</option>
@@ -236,15 +230,15 @@
                                             </div>   
                                             <div class="form-group row">
                                                 <div class="col">
-                                                    <label for="colored_mono" class="">Camera Type (Colored, Mono)</label>
-                                                    <select class="form-control" id="colored_mono">
+                                                    <label for="camera_type_(colored,mono)" class="">Camera Type (Colored, Mono)</label>
+                                                    <select class="form-control" id="camera_type_(colored,mono)" name="camera_type_(colored,mono)">
                                                         <option>colored</option>
                                                         <option>mono</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">                
-                                                    <label for="cooled_uncooled" class="">Camera Type (Cooled, Uncooled)</label>
-                                                    <select class="form-control" id="cooled_uncooled">
+                                                    <label for="camera_type(cooled,uncooled)" class="">Camera Type (Cooled, Uncooled)</label>
+                                                    <select class="form-control" id="camera_type(cooled,uncooled)" name="camera_type(cooled,uncooled)">
                                                         <option>colored</option>
                                                         <option>uncooled</option>
                                                     </select>
@@ -252,22 +246,22 @@
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col">                
-                                                    <label for="johnson_b" class="">Johnson B</label>
-                                                    <select class="form-control" id="johnson_b">
+                                                    <label for="Johnson_B" class="">Johnson B</label>
+                                                    <select class="form-control" id="Johnson_B" name="Johnson_B">
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">   
                                                     <label for="johnson_v" class="">Johnson V</label>
-                                                    <select class="form-control" id="johnson_v">
+                                                    <select class="form-control" id="johnson_v" name="johnson_v">
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">        
-                                                    <label for="johnson_r" class="">Johnson R</label>
-                                                    <select class="form-control" id="johnson_r">
+                                                    <label for="Johnson_R" class="">Johnson R</label>
+                                                    <select class="form-control" id="Johnson_R" name="Johnson_R">
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
@@ -275,36 +269,36 @@
                                             </div>     
                                             <div class="form-group row">
                                                 <div class="col">                
-                                                    <label for="sdss_u" class="">SDSS u</label>
-                                                    <select class="form-control" id="sdss_u">
+                                                    <label for="SDSS_u" class="">SDSS u</label>
+                                                    <select class="form-control" id="SDSS_u" name="SDSS_u">
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">                
-                                                    <label for="sdss_g" class="">SDSS g</label>
-                                                    <select class="form-control" id="sdss_g">
+                                                    <label for="SDSS_g" class="">SDSS g</label>
+                                                    <select class="form-control" id="SDSS_g" name="SDSS_g">
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">                
-                                                    <label for="sdss_r" class="">SDSS r</label>
-                                                    <select class="form-control" id="sdss_r">
+                                                    <label for="SDSS_r" class="">SDSS r</label>
+                                                    <select class="form-control" id="SDSS_r" name="SDSS_r">
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">                
-                                                    <label for="sdss_i" class="">SDSS i</label>
-                                                    <select class="form-control" id="sdss_i">
+                                                    <label for="SDSS_i" class="">SDSS i</label>
+                                                    <select class="form-control" id="SDSS_i" name="SDSS_i">
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">                
-                                                    <label for="sdss_z" class="">SDSS z</label>
-                                                    <select class="form-control" id="sdss_z">
+                                                    <label for="SDSS_z" class="">SDSS z</label>
+                                                    <select class="form-control" id="SDSS_z" name="SDSS_z">
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
@@ -326,9 +320,9 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <th><input type="text"  class="form-control" id="target_name"></th>
-                                                            <th><input type="number" step="0.01"  class="form-control" id="ra"></th>
-                                                            <th><input type="number" step="0.01"  class="form-control" id="dec"></th>
+                                                            <th><input type="text"  class="form-control" id="targetName" name="targetName"></th>
+                                                            <th><input type="number" step="0.01"  class="form-control" id="longitude" name="longitude"></th>
+                                                            <th><input type="number" step="0.01"  class="form-control" id="latitude" name="latitude"></th>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -344,37 +338,7 @@
         
 
                                             </div>
-                                            <div id="participant" class="container tab-pane fade"><br>
-                                                <h3>Participant</h3><br><br>
-                                                <table class="text-white table table-active table-bordered" id="participant_table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>UID
-                                                            </th>
-                                                            <th>Name</th>
-                                                            <th>Email</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th><input type="text"  class="form-control" id="participant_uid"></th>
-                                                            <th><input type="text"   class="form-control" id="participant_name"></th>
-                                                            <th>
-                                                            <input type="email"   class="form-control" id="participant_email"></th>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <div>
-                                                    <br><br>
-                                                    <div class="row">
-                                                    <div class="col-4"></div>
-                                                    <div class="col-4">
-                                                    <button type="button" class="btn btn-outline-light btn-block" onclick="add_participant_table()">Add Participant</button>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                              
-                                            </div>
+
                                         </div>
                                         <div>
                                             <br><br>
