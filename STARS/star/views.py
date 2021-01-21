@@ -238,7 +238,7 @@ def home_project_info_target_submit(request):
     with connection.cursor() as cursor:
         try:
             cursor.execute(
-                "INSERT INTO user_db(uid,pid)"
+                "INSERT INTO participate_db(uid,pid)"
                 + " VALUES(" + str(uid) + ",\'" + str(pid) + "\')")
             result = []
             result.append({'success' : True})
