@@ -259,7 +259,7 @@ def home_project_info_target(request):
         cursor.execute("SELECT * FROM project_db WHERE pid = " + str(pid))
         print(targets)
         projectInfo = processData(cursor)
-    return render(request,'project-info-target.html',{'projectInfo':projectInfo[0],'targets':targets})
+    return render(request,'join-project-info-target.html',{'projectInfo':projectInfo[0],'targets':targets})
 
 def home_project_info_target_submit(request):
     uid = getuid(request)
