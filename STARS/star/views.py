@@ -460,11 +460,15 @@ def schedule(request):
         "equipments": equipments
     }
     
-    return HttpResponse("get schedule choose form: {}".format(res))
+    return render(request, 'schedule.html', res)
 
 def target_schedule(request):
-    pid = request.GET['pid']
-    eid = request.GET['eid']
+    print("schedule submit")
+    print(request.GET)
+    pid = request.GET['pid'].split()[0]
+    eid = request.GET['eid'].split()[0]
+
+    print(pid, eid)
 
     sql_p = \
     """
@@ -548,7 +552,7 @@ def target_schedule(request):
 
     print(res)
 
-    return HttpResponse("get target schedule: {}".format(res))
+    return render(request, 'target-schedule.html', res)
 
 """
     Equipment
