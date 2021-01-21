@@ -21,6 +21,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.css' %}" rel="stylesheet">
+    <link href="{% static 'css/schedule.css' %}" rel="stylesheet">
 
 </head>
 
@@ -97,7 +98,6 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-
         </ul>
         <!-- End of Sidebar -->
 
@@ -144,92 +144,47 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid bg-star">
                     <div class="row">
-                        <div class="col-12">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <br><br>  
-                                    <h1>Equipment</h1>
-                                    <br><br>  
-                                    <div class="table-responsive">
-                                        <table class="text-white table table-active table-bordered">
-                                          <thead>
-                                            <tr>
-                                              <th>EID</th>
-                                              <th>Site</th>
-                                              <th>Longitude</th>
-                                              <th>Latitude</th>
-                                              <th>Altitude</th>
-                                              <th>Time Zone</th>
-                                              <th>Daylight Saving</th>
-                                              <th>Water Vapor</th>
-                                              <th>Light Pollution (M/SAS)</th>
-                                              <th>Aperture</th>
-                                              <th>Fo V</th>
-                                              <th>Pixel Scale</th>
-                                              <th>Tracking Accuracy</th>
-                                              <th>Limiting Magnitude (MAG)</th>
-                                              <th>Elevation Limit (DEG)</th>
-                                              <th>Mount Type (German, Fork, Theodolite)</th>
-                                              <th>Camera Type (Colored, Mono)</th>
-                                              <th>Camera Type (Cooled, Uncooled)</th>
-                                              <th>Johnson B</th>
-                                              <th>Johnson V</th>
-                                              <th>Johnson R</th>
-                                              <th>SDSS u</th>
-                                              <th>SDSS g</th>
-                                              <th>SDSS r</th>
-                                              <th>SDSS i</th>
-                                              <th>SDSS z</th>
-                                            </tr>
-                                          </thead>
-                                          <tbody>
-                                              {% for equipment in equipments %}
-                                            <tr>
-                                              <td>{{ equipment.eid }}</td>
-                                              <td>{{ equipment.site }}</td>
-                                              <td>{{ equipment.longitude }}</td>
-                                              <td>{{ equipment.latitude }}</td>
-                                              <td>{{ equipment.altitude }}</td>
-                                              <td>{{ equipment.time_zone }}</td>
-                                              <td>{{ equipment.daylight_saving }}</td>
-                                              <td>{{ equipment.water_vapor }}</td>
-                                              <td>{{ equipment.light_pollution }}</td>
-                                              <td>{{ equipment.aperture }}</td>
-                                              <td>{{ equipment.fov }}</td>
-                                              <td>{{ equipment.pixel_scale }}</td>
-                                              <td>{{ equipment.tracking_accuracy }}</td>
-                                              <td>{{ equipment.limiting_magnitude }}</td>
-                                              <td>{{ equipment.elevation_limit }}</td>
-                                              <td>{{ equipment.mount_type }}</td>
-                                              <td>{{ equipment.camera_type_colored_mono }}</td>
-                                              <td>{{ equipment.camera_type_cooled_uncooled }}</td>
-                                              <td>{{ equipment.johnson_b }}</td>
-                                              <td>{{ equipment.johnson_v }}</td>
-                                              <td>{{ equipment.johnson_r }}</td>
-                                              <td>{{ equipment.sdss_u }}</td>
-                                              <td>{{ equipment.sdss_g }}</td>
-                                              <td>{{ equipment.sdss_r }}</td>
-                                              <td>{{ equipment.sdss_i }}</td>
-                                              <td>{{ equipment.sdss_z }}</td>
-
-                                              </tr>
-                                              {% endfor %}
-                                          </tbody>
-                                        </table>
-                                        <div class="form-group row">
-                                            <div class="col-4"></div>
-                                        <div class="col-4">
-                                            <br><br>
-                                            <a href="/equipment/add-equipment" class="btn btn-outline-light btn-block">Add  Equipment</a>
-                                            <br><br>
-                                        </div>
-                                        </div>
-                                        <br><br><br><br><br><br><br><br><br><br><br><br><br>
-                                    </div>   
-                                    </div>
-                                </div>
+                        res = {
+                            "project": project,
+                            "schedules": schedules
+                        }
+                        <div class="col-4"></div>
+                        <div class="col">
+                            <div>
+                                {{ project }}
+                                <br><br>
                             </div>
+
+                            <div>
+                                {% for schedule in schedules %}
+                                <p>{{ schedule }}</p>
+                                <br>
+                                {% endfor %}
+                            </div>
+                            <!-- <form action="/schedule/submit" method="post">
+                                <div id="projectSelectDiv" class="form-group">
+                                    <select id="pid" class="form-control" name="pid">
+                                        {% for project in projects %}
+                                        <option>{{project.pid}} {{project.title}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+    
+                                <div id="equipmentSelectDiv" class="form-group">
+                                    <select id="eid" class="form-control" name="eid">
+                                        {% for equipment in equipments %}
+                                        <option>{{equipment.eid}} {{equipment.site}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <br><br>
+                                    <button type="submit" class="btn btn-outline-light btn-block" onclick="updateShifts()">View Schedule</button>
+                                    <br><br>
+                                </div>
+                            </form> -->
                         </div>
+                        <div class="col-4"></div>
                     </div>
 
                 </div>
