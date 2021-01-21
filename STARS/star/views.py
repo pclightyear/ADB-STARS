@@ -385,10 +385,10 @@ def create_project_submit(request):
     p_SDSS_i = str(request.POST['SDSS_i'])
     p_SDSS_z = str(request.POST['SDSS_z'])
 
-    t_names = request.POST['targetName']
-    t_longitudes = request.POST['longitude']
-    t_latitudes = request.POST['latitude']
-    
+    t_names = request.POST.getlist('targetName')
+    t_longitudes = request.POST.getlist('longitude')
+    t_latitudes = request.POST.getlist('latitude')
+    print(t_names)
 
     with connection.cursor() as cursor:
         try:
@@ -413,6 +413,9 @@ def create_project_submit(request):
                 t_name = str(t_names[idx])
                 t_longitude = str(t_longitudes[idx])
                 t_latitude = str(t_latitudes[idx])
+                print(t_name)
+                print(t_longitude)
+                print(t_latitude)
                 cursor.execute("SELECT max(tid) FROM target_db")
                 data = processData(cursor)
                 tid = int(data[0]['max']) + 1
