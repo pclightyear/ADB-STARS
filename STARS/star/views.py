@@ -247,6 +247,7 @@ def home_project_info_target(request):
             cursor.execute("SELECT t.tid, t.Name as targetName, t.longitude, t.latitude FROM target_db as t WHERE t.tid = " + str(tid))
             targets.append(processData(cursor)[0])
         cursor.execute("SELECT * FROM project_db WHERE pid = " + str(pid))
+        print(targets)
         projectInfo = processData(cursor)
     return render(request,'project-info-target.html',{'projectInfo':projectInfo[0],'targets':targets})
 
@@ -288,7 +289,7 @@ def join_project(request):
 
     print(res)
 
-    return HttpResponse("get join projects: {}".format(res))
+    return render(request,'join-project.html',{'projects':res})
 
 def join_project_info(request):
     pid = request.GET['pid']
@@ -328,7 +329,7 @@ def join_project_info(request):
         "targets": targets
     }
     
-    return HttpResponse("get join project info: {}".format(res))
+    return render(request,'project-info-target.html',{'projectInfo':res['project'],"targets": res['targets']})
 
 def manage_project(request):
     uid = getuid(request)
@@ -356,36 +357,37 @@ def manage_project(request):
 
     print(res)
 
-    return HttpResponse("get manage projects: {}".format(res))
+    return render(request,'manage-project.html',{'projects':res})
 
 def create_project(request):
     return render(request, 'create-project.html')
 
 def create_project_submit(request):
     uid = getuid(request)
-    project = request.POST['project']
-    p_title = str(project['title'])
-    p_project_type =  str(project['project_type'])
-    p_description = str(project['description'])
-    p_aperture_upper_limit = str(project['aperture_upper_limit'])
-    p_aperture_lower_limit = str(project['aperture_lower_limit'])
-    p_FoV_upper_limit = str(project['FoV_upper_limit'])
-    p_FoV_lower_limit = str(project['FoV_lower_limit'])
-    p_pixel_scale_upper_limit = str(project['pixel_scale_upper_limit'])
-    p_pixel_scale_lower_limit = str(project['pixel_scale_lower_limit'])
-    p_mount_type = str(project['mount_type'])
-    p_camera_type_colored_mono = str(project['camera_type_(colored,mono)'])
-    p_camera_type_cooled_uncooled = str(project['camera_type(cooled,uncooled)'])
-    p_Johnson_B = str(project['Johnson_B'])
-    p_Johnson_V = str(project['Johnson_V'])
-    p_Johnson_R = str(project['Johnson_R'])
-    p_SDSS_u = str(project['SDSS_u'])
-    p_SDSS_g = str(project['SDSS_g'])
-    p_SDSS_r = str(project['SDSS_r'])
-    p_SDSS_i = str(project['SDSS_i'])
-    p_SDSS_z = str(project['SDSS_z'])
+    p_title = str(request.POST['title'])
+    p_project_type =  str(request.POST['project_type'])
+    p_description = str(request.POST['description'])
+    p_aperture_upper_limit = str(request.POST['aperture_upper_limit'])
+    p_aperture_lower_limit = str(request.POST['aperture_lower_limit'])
+    p_FoV_upper_limit = str(request.POST['FoV_upper_limit'])
+    p_FoV_lower_limit = str(request.POST['FoV_lower_limit'])
+    p_pixel_scale_upper_limit = str(request.POST['pixel_scale_upper_limit'])
+    p_pixel_scale_lower_limit = str(request.POST['pixel_scale_lower_limit'])
+    p_mount_type = str(request.POST['mount_type'])
+    p_camera_type_colored_mono = str(request.POST['camera_type(colored,mono)'])
+    p_camera_type_cooled_uncooled = str(request.POST['camera_type(cooled,uncooled)'])
+    p_Johnson_B = str(request.POST['Johnson_B'])
+    p_Johnson_V = str(request.POST['Johnson_V'])
+    p_Johnson_R = str(request.POST['Johnson_R'])
+    p_SDSS_u = str(request.POST['SDSS_u'])
+    p_SDSS_g = str(request.POST['SDSS_g'])
+    p_SDSS_r = str(request.POST['SDSS_r'])
+    p_SDSS_i = str(request.POST['SDSS_i'])
+    p_SDSS_z = str(request.POST['SDSS_z'])
 
-    targets = request.POST['targets']
+    t_names = request.POST['targetName']
+    t_longitudes = request.POST['longitude']
+    t_latitudes = request.POST['latitude']
     
 
     with connection.cursor() as cursor:
@@ -407,17 +409,16 @@ def create_project_submit(request):
                 "INSERT INTO manage_db(uid,pid) VALUES(" + str(uid) + "," + str(pid) + ")"
             )
 
-            for idx in range(len(targets)):
-                target = targets[idx]
-                t_name = str(target['name'])
-                t_longitude = str(target['longitude'])
-                t_latitude = str(target['latitude'])
+            for idx in range(len(t_names)):
+                t_name = str(t_names[idx])
+                t_longitude = str(t_longitudes[idx])
+                t_latitude = str(t_latitudes[idx])
                 cursor.execute("SELECT max(tid) FROM target_db")
                 data = processData(cursor)
                 tid = int(data[0]['max']) + 1
                 cursor.execute(
                     "INSERT INTO target_db(tid,name,longitude,latitude) VALUES(" + 
-                    str(tid) + ",\'" + t_name + "\'," + str(t_longitude) + "," + str(t_latitude) + ")"
+                    str(tid) + ",\'" + t_name + "\'," + t_longitude + "," + t_latitude + ")"
                 )
                 cursor.execute(
                     "INSERT INTO observe_db(pid,tid,johnson_b,johnson_v,johnson_r,"+
@@ -600,7 +601,7 @@ def equipment_add_equipment_submit(request):
     e_limiting_magnitude = str(equipment['limiting_magnitude'])
     e_elevation_limit = str(equipment['elevation_limit'])
     e_mount_type = str(equipment['mount_type'])
-    e_camera_type_colored_mono = str(equipment['camera_type_(colored,mono)'])
+    e_camera_type_colored_mono = str(equipment['camera_type(colored,mono)'])
     e_camera_type_cooled_uncooled = str(equipment['camera_type(cooled,uncooled)'])
     e_Johnson_B = str(equipment['Johnson_B'])
     e_Johnson_V = str(equipment['Johnson_V'])
