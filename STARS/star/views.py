@@ -600,6 +600,7 @@ def target_schedule(request):
         cursor.execute(sql_t)
         targets = processData(cursor)
 
+    schedules = []
     for t in targets:
         TID = t['tid']
         ra = t['longitude'] # longitude
@@ -622,7 +623,8 @@ def target_schedule(request):
         t['observationTime_Begin'] = t_start
         t['observationTime_End'] = t_end
 
-    schedules = deepcopy(targets)
+        if not isinstance(t_start, float) and not isinstance(t_end, float):
+            schedules.append(t)
 
     res = {
         "project": project,
