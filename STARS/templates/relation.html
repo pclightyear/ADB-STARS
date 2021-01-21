@@ -1,42 +1,116 @@
 <html>
 <head>
-    <title>DataViz</title>
+    <title>Star</title>
     <style type="text/css">
-        #viz {
+        #viz1 {
             width: 100%;
             height: 100%;
+            font: '22pt arial';
+            background-color: black;
+        }
+        #viz2 {
+            width: 100%;
+            height: 100%;
+            font: '22pt arial';
+            background-color: black;
         }
     </style>
     <script src="https://cdn.neo4jlabs.com/neovis.js/v1.5.0/neovis.js"></script>
 
 </head>
-<body onload="draw()">
-    <div id="viz"></div>
-
+<body onload="draw_all()">
+    <div id="viz1"></div>
+    <div id="viz2"></div>
     <script>
-        function draw() {
+        function draw_all(){
+            draw1();
+            draw2();
+        }
+        function draw1() {
 
             var config = {
-                container_id: "viz",
+                container_id: "viz1",
                 server_url: "bolt://localhost:7687",
                 server_user: "neo4j",
                 server_password: "1234",
                 labels: {
                     "User": {
+                        "caption": "name",
+                        "size": 15,
+                        "font": {
+                            "size":40,
+                            "color":"#000000"
+                        },
                     },
                     "Project" :{
+                        "caption": "tilte",
+                        "size": 15,
+                        "font": {
+                            "size":40,
+                            "color":"#000000"
+                        },
+                    },
+                    "Target" :{
+                        "size": 8,
+                        "community": "community"
                     }
                 },
                 relationships: {
                     "Participate":{
+                        "thickness": "weight",
+                        "caption": false
+                    },
+                    "Observed_By":{
+                        "caption": "",
+                        "thickness": "weight",
+                        "caption": false
+
                     }
                 },
-                initial_cypher: "MATCH (u1:User{uid:'0'})-[r1:Participate*1]->(p1:Project)<-[r2:Participate*1]-(u2:User) WHERE u1.uid <> u2.uid return u1,r1,p1,r2,u2",
+                initial_cypher: "MATCH (u:User{uid:'0'})-[r1:Participate*1]->(p:Project)<-[r2:Observed_By*1]-(t:Target) return u,r1,p,r2,t",
                 arrows: true
             }
 
-            var viz = new NeoVis.default(config);
-            viz.render();
+            var viz1 = new NeoVis.default(config);
+            viz1.render();
+        }
+        function draw2() {
+
+            var config = {
+                container_id: "viz2",
+                server_url: "bolt://localhost:7687",
+                server_user: "neo4j",
+                server_password: "1234",
+                labels: {
+                    "User": {
+                        "caption": "name",
+                        "size": 15,
+                        "font": {
+                            "size":40,
+                            "color":"#000000"
+                        },
+                    },
+                    "Project" :{
+                        "caption": "tilte",
+                        "size": 15,
+                        "font": {
+                            "size":40,
+                            "color":"#000000"
+                        },
+                    },
+                },
+                relationships: {
+                    "Participate":{
+                        "thickness": "weight",
+                        "caption": false
+                    }
+                },
+                initial_cypher: "MATCH (u:User{uid:'0'})-[r1:Participate*1]->(p:Project)<-[r2:Participate*1]-(u2:User) WHERE u.uid <> u2.uid return u,r1,p,r2,u2",
+                arrows: true
+            }
+
+            var viz2 = new NeoVis.default(config);
+            viz2.render();
         }
     </script>
 </body>
