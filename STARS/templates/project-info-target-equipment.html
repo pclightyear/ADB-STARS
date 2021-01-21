@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,13 +14,13 @@
     <title>STAR</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <link href="{% static 'css/sb-admin-2.css' %}" rel="stylesheet">
 
 </head>
 
@@ -31,7 +33,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <!-- <i class="fas fa-laugh-wink"></i> -->
                 </div>
@@ -43,64 +45,58 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/home">
                     <i class="fa fa-home"></i>
                     <span>Home</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link" href="/join-project">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Project</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Project Management</h6>
-                        <a class="collapse-item" href="my-project.html">My Project</a>
-                        <a class="collapse-item" href="all-project.html">All Project</a>
-                        <a class="collapse-item" href="create-project.html">Create Project</a>
-                    </div>
-                </div>
+                    <span>Join Project</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/manage-project">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Manage Project</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/create-project">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Create Project</span></a>
             </li>
             <hr class="sidebar-divider">
-
-            <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link" href="/equipment">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Equipment</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Equipment Management</h6>
-                        <a class="collapse-item" href="my-equipment.html">My Equipment</a>
-                        <a class="collapse-item" href="all-equipment.html">All Equipment</a>
-                        <a class="collapse-item" href="add-equipment.html">Add Equipment</a>
-                    </div>
-                </div>
+                    <span>Equipment</span></a>
             </li>
+
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="schedule.html">
+                <a class="nav-link" href="/schedule">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Schadule</span></a>
             </li>
             <hr class="sidebar-divider">
-            
+
+            <li class="nav-item">
+                <a class="nav-link" href="/relation">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Relation</span></a>
+            </li>
+            <hr class="sidebar-divider">
+
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <br><br>
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -113,7 +109,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow fixed-top">
-                    <a class="navbar-brand text-center text-white" href="index.html">STAR</a>
+                    <a class="navbar-brand text-center text-white" href="/home">STAR</a>
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -121,44 +117,25 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
-
-                        <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline">Admin</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/avatar.png">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="profile.html">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <div class="dropdown-divider"></div>
-
-                                <a class="dropdown-item" href="register.html">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Register
-                                </a>
-                                <div class="dropdown-divider"></div>
-
-                                <a class="dropdown-item" href="login.html">
-                                    <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Log In
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="login.html">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Log Out
-                                </a>
-                            </div>
+                            <a href="/register" class="nav-link dropdown-toggle">Register</a>
                         </li>
-
+                        {% if request.session.username %}
+                        <li class="nav-item dropdown no-arrow">
+                            <a href="/logout" class="nav-link dropdown-toggle">Log Out</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item dropdown no-arrow">
+                            <a href="/login" class="nav-link dropdown-toggle">Log In</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item dropdown no-arrow">
+                            <a href="/profile" class="nav-link dropdown-toggle">
+                                <span class="mr-2 d-none d-lg-inline">{{ request.session.username }}</span>
+                                <img class="img-profile rounded-circle"
+                                    src="{% static '/img/avatar.png' %}">
+                            </a>
+                        </li>                        
                     </ul>
 
                 </nav>
@@ -172,7 +149,7 @@
                             <div class="p-5">
                                 <div class="text-center text-white">
                                     <br><br>  
-                                    <h1>Create Project</h1>
+                                    <h1>Project Infomation</h1>
                                     <br><br>  
                                     <ul class="nav nav-tabs" role="tablist">
                                         <li class="nav-item">
@@ -182,75 +159,77 @@
                                           <a class="nav-link text-white" data-toggle="pill" href="#target">Target</a>
                                         </li>
                                         <li class="nav-item">
-                                          <a class="nav-link text-white" data-toggle="pill" href="#participant">Participant</a>
+                                            <a class="nav-link text-white" data-toggle="pill" href="#equipment">Equipment</a>
                                         </li>
+
                                     </ul>
                                     <br><br>
                                     
-                                    <form action="submit.php">
+                                    <form action="/home/project-info-target/submit" method="post">
                                         <div class="tab-content">
                                             <div id="project" class="container tab-pane active"><br>
                                                 <h3>Project</h3><br><br>
-                                              <div class="form-group row">                  
+                                              <div class="form-group row">
                                                 <div class="col">
-                                                    <label class="" for="project_title">Project title</label>
-                                                    <input type="text"  class="form-control" id="project_title" placeholder="">
+                                                    <label class="" for="pid">PID</label>
+                                                    <input type="text"  class="form-control" id="pid" name="pid" placeholder="" value="{{ projectInfo.pid }}" readonly>
+                                                </div>
+
+                                                <div class="col">
+                                                    <label class="" for="title">title</label>
+                                                    <input type="text"  class="form-control" id="title" placeholder="" value="{{ projectInfo.title }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="form-group row">                  
                                                 <div class="col">
                                                     <label class="" for="project_description">Project Description</label>
-                                                    <input type="text"  class="form-control" id="project_description" placeholder="">
+                                                    <input type="text"  class="form-control" id="project_description" placeholder="" value="{{ projectInfo.description }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col">
                                                     <label class="" for="project_type">Project Type</label>
-                                                    <select class="form-control" id="project_type">
+                                                    <select class="form-control" id="project_type" value="{{ projectInfo.project_type }}" readonly>
                                                         <option>regular</option>
                                                         <option>transient
                                                         </option>
                                                     </select>
                                                 </div>
-                                                <div class="col">
-                                                    <label class="" for="pi">PI</label>
-                                                    <input type="number" step="1" class="form-control" id="pi">
-                                                </div>
-                                            </div>                                    
+                                            </div>
                                             <div class="form-group row">
                                                 <div class="col">
                                                     <label class="" for="aperture_upper_limit">Aperture Upper Limit</label>
-                                                    <input type="number" step="1" class="form-control" id="aperture_upper_limit">
+                                                    <input type="number" step="1" class="form-control" id="aperture_upper_limit" value="{{ projectInfo.aperture_upper_limit }}" readonly>
                                                 </div>
                                                 <div class="col">
                                                     <label class="" for="aperture_lower_limit">Aperture Lower Limit</label>
-                                                    <input type="number" step="1" class="form-control" id="aperture_lower_limit">
+                                                    <input type="number" step="1" class="form-control" id="aperture_lower_limit" value="{{ projectInfo.aperture_lower_limit }}" readonly>
                                                 </div>          
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col">
                                                     <label class="" for="fov_upper_limit">Fo V Upper Limit</label>
-                                                    <input type="number" step="100" class="form-control" id="fov_upper_limit">
+                                                    <input type="number" step="100" class="form-control" id="fov_upper_limit" value="{{ projectInfo.fov_upper_limit }}" readonly>
                                                 </div>
                                                 <div class="col">
                                                     <label class="" for="fov_lower_limit">Fo V Lower Limit</label>
-                                                    <input type="number" step="1" class="form-control" id="fov_lower_limit">
+                                                    <input type="number" step="1" class="form-control" id="fov_lower_limit" value="{{ projectInfo.fov_lower_limit }}" readonly>
                                                 </div>
                                             </div>   
                                             <div class="form-group row">
                                                 <div class="col">
                                                     <label class="" for="pixel_scale_upper_limit">Pixel Scale Upper Limit</label>
-                                                    <input type="number" step="1" class="form-control" id="pixel_scale_upper_limit">
+                                                    <input type="number" step="1" class="form-control" id="pixel_scale_upper_limit" value="{{ projectInfo.pixel_scale_upper_limit }}" readonly>
                                                 </div>
                                                 <div class="col">
                                                     <label class="" for="pixel_scale_lower_limit">Pixel Scale Lower Limit</label>
-                                                    <input type="number" step="0.1" class="form-control" id="pixel_scale_lower_limit">
+                                                    <input type="number" step="0.1" class="form-control" id="pixel_scale_lower_limit" value="{{ projectInfo.pixel_scale_lower_limit }}" readonly>
                                                 </div>
                                             </div>                                        
                                             <div class="form-group row">
                                                 <div class="col">
                                                     <label for="colored-mono" class="">Mount Type (German, Fork, Theodolite)</label>
-                                                    <select class="form-control" id="mount_type">
+                                                    <select class="form-control" id="mount_type" value="{{ projectInfo.mount_type }}" disabled>
                                                         <option>german</option>
                                                         <option>fork</option>
                                                         <option>theodolite</option>
@@ -260,14 +239,14 @@
                                             <div class="form-group row">
                                                 <div class="col">
                                                     <label for="colored_mono" class="">Camera Type (Colored, Mono)</label>
-                                                    <select class="form-control" id="colored_mono">
+                                                    <select class="form-control" id="colored_mono" value="{{ projectInfo.colored_mono }}" disabled>
                                                         <option>colored</option>
                                                         <option>mono</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">                
                                                     <label for="cooled_uncooled" class="">Camera Type (Cooled, Uncooled)</label>
-                                                    <select class="form-control" id="cooled_uncooled">
+                                                    <select class="form-control" id="cooled_uncooled" value="{{ projectInfo.cooled_uncooled }}" disabled>
                                                         <option>colored</option>
                                                         <option>uncooled</option>
                                                     </select>
@@ -276,21 +255,21 @@
                                             <div class="form-group row">
                                                 <div class="col">                
                                                     <label for="johnson_b" class="">Johnson B</label>
-                                                    <select class="form-control" id="johnson_b">
+                                                    <select class="form-control" id="johnson_b" value="{{ projectInfo.johnson_b }}" disabled>
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">   
                                                     <label for="johnson_v" class="">Johnson V</label>
-                                                    <select class="form-control" id="johnson_v">
+                                                    <select class="form-control" id="johnson_v" value="{{ projectInfo.johnson_v }}" disabled>
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">        
                                                     <label for="johnson_r" class="">Johnson R</label>
-                                                    <select class="form-control" id="johnson_r">
+                                                    <select class="form-control" id="johnson_r" value="{{ projectInfo.johnson_r }}" disabled>
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
@@ -299,67 +278,48 @@
                                             <div class="form-group row">
                                                 <div class="col">                
                                                     <label for="sdss_u" class="">SDSS u</label>
-                                                    <select class="form-control" id="sdss_u">
+                                                    <select class="form-control" id="sdss_u" value="{{ projectInfo.sdss_u }}" disabled>
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">                
                                                     <label for="sdss_g" class="">SDSS g</label>
-                                                    <select class="form-control" id="sdss_g">
+                                                    <select class="form-control" id="sdss_g" value="{{ projectInfo.sdss_g }}" disabled>
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">                
                                                     <label for="sdss_r" class="">SDSS r</label>
-                                                    <select class="form-control" id="sdss_r">
+                                                    <select class="form-control" id="sdss_r" value="{{ projectInfo.sdss_r }}" disabled>
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">                
                                                     <label for="sdss_i" class="">SDSS i</label>
-                                                    <select class="form-control" id="sdss_i">
+                                                    <select class="form-control" id="sdss_i" value="{{ projectInfo.sdss_i }}" disabled>
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">                
                                                     <label for="sdss_z" class="">SDSS z</label>
-                                                    <select class="form-control" id="sdss_z">
+                                                    <select class="form-control" id="sdss_z" value="{{ projectInfo.sdss_z }}" disabled>
                                                         <option>y</option>
                                                         <option>n</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <div class="col">
-                                                    <label for="allow_join" class="">Allow Join</label>
-                                                    <select class="form-control" id="allow_join">
-                                                        <option>y</option>
-                                                        <option>n</option>
-                                                        <option>special_requirements</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col">
-                                                    <label for="progress" class="">Progress (%)</label>
-                                                    <input type="number" step="1"  class="form-control" id="progress" max=100 min=0 oninput="change_progress_bar()">               
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <br>
-                                                <div class="progress" style="height:30px">           
-                                                    <div class="progress-bar  progress-bar-striped progress-bar-animated" style="width:0%; height:30px" id="progress_bar"></div>
-                                                </div> 
-                                            </div>
-
-                                            </div>
+                                        </div>
                                             <div id="target" class="container tab-pane fade"><br>
                                                 <h3>Target</h3><br><br>
                                                 <table class="text-white table table-active table-bordered" id="target_table">
                                                     <thead>
                                                         <tr>
+                                                            <th>TID
+                                                            </th>
                                                             <th>Target
                                                             </th>
                                                             <th>RA (Longitude)</th>
@@ -367,64 +327,47 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        {% for target in targets %}
                                                         <tr>
-                                                            <th><input type="text"  class="form-control" id="target_name"></th>
-                                                            <th><input type="number" step="0.01"  class="form-control" id="ra"></th>
-                                                            <th><input type="number" step="0.01"  class="form-control" id="dec"></th>
+                                                            <th><input type="text"  class="form-control" id="target_name" value="{{ target.tid }}" disabled></th>
+                                                            <th><input type="text"  class="form-control" id="target_name" value="{{ target.targetname }}" disabled></th>
+                                                            <th><input type="number" step="0.01"  class="form-control" id="ra" value="{{ target.longitude }}" disabled></th>
+                                                            <th><input type="number" step="0.01"  class="form-control" id="dec" value="{{ target.latitude }}" disabled></th>
                                                         </tr>
+                                                        {% endfor %}
                                                     </tbody>
                                                 </table>
-                                                <div>
-                                                    <br><br>
-                                                    <div class="row">
-                                                    <div class="col-4"></div>
-                                                    <div class="col-4">
-                                                    <button type="button" class="btn btn-outline-light btn-block" onclick="add_target_table()">Add Target</button>
-                                                    </div>
-                                                    </div>
-                                                </div>
-        
-
+                                                
                                             </div>
-                                            <div id="participant" class="container tab-pane fade"><br>
-                                                <h3>Participant</h3><br><br>
-                                                <table class="text-white table table-active table-bordered" id="participant_table">
+                                            <div id="equipment" class="container tab-pane fade"><br>
+                                                <h3>Equipment</h3><br><br>
+                                                <table class="text-white table table-active table-bordered" id="target_table">
                                                     <thead>
                                                         <tr>
                                                             <th>UID
                                                             </th>
-                                                            <th>Name</th>
-                                                            <th>Email</th>
+                                                            <th>Username
+                                                            </th>
+                                                            <th>EID</th>
+                                                            <th>Site</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        {% for equipment in equipments %}
                                                         <tr>
-                                                            <th><input type="text"  class="form-control" id="participant_uid"></th>
-                                                            <th><input type="text"   class="form-control" id="participant_name"></th>
-                                                            <th>
-                                                            <input type="email"   class="form-control" id="participant_email"></th>
+                                                            <th><input type="text"  class="form-control" id="target_name" value="{{ equipment.uid }}" disabled></th>
+                                                            <th><input type="text"  class="form-control" id="target_name" value="{{ equipment.username }}" disabled></th>
+                                                            <th><input type="number" step="0.01"  class="form-control" id="ra" value="{{ equipment.eid }}" disabled></th>
+                                                            <th><input type="number" step="0.01"  class="form-control" id="dec" value="{{ target.site }}" disabled></th>
                                                         </tr>
+                                                        {% endfor %}
                                                     </tbody>
                                                 </table>
-                                                <div>
-                                                    <br><br>
-                                                    <div class="row">
-                                                    <div class="col-4"></div>
-                                                    <div class="col-4">
-                                                    <button type="button" class="btn btn-outline-light btn-block" onclick="add_participant_table()">Add Participant</button>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                              
+                                                
                                             </div>
+
                                         </div>
-                                        <div>
-                                            <br><br>
-                                            <button type="submit" class="btn btn-outline-light btn-block">Create Project</button>
-                                            <br><br>
-                                        </div>
-                                        
-                                        
+                                                                            
                                     </form>
 
                                 </div>
@@ -450,16 +393,17 @@
     </a>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
 
 </body>
 
 </html>
-<script src="js/main.js"></script>
+<script src="{% static 'js/main.js' %}"></script>

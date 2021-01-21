@@ -34,7 +34,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <!-- <i class="fas fa-laugh-wink"></i> -->
                 </div>
@@ -46,59 +46,52 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="home">
+                <a class="nav-link" href="/home">
                     <i class="fa fa-home"></i>
                     <span>Home</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link" href="/join-project">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Project</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Project Management</h6>
-                        <a class="collapse-item" href="my-project">My Project</a>
-                        <a class="collapse-item" href="all-project">All Project</a>
-                        <a class="collapse-item" href="create-project">Create Project</a>
-                    </div>
-                </div>
+                    <span>Join Project</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/manage-project">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Manage Project</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/create-project">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Create Project</span></a>
             </li>
             <hr class="sidebar-divider">
-
-            <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link" href="/equipment">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Equipment</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Equipment Management</h6>
-                        <a class="collapse-item" href="my-equipment">My Equipment</a>
-                        <a class="collapse-item" href="all-equipment">All Equipment</a>
-                        <a class="collapse-item" href="add-equipment">Add Equipment</a>
-                    </div>
-                </div>
+                    <span>Equipment</span></a>
             </li>
+
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="schedule">
+                <a class="nav-link" href="/schedule">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Schadule</span></a>
             </li>
             <hr class="sidebar-divider">
-            
+
+            <li class="nav-item">
+                <a class="nav-link" href="/relation">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Relation</span></a>
+            </li>
+            <hr class="sidebar-divider">
+
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <br><br>
@@ -113,10 +106,9 @@
 
             <!-- Main Content -->
             <div id="content">
-
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow fixed-top">
-                    <a class="navbar-brand text-center text-white" href="home">STAR</a>
+                    <a class="navbar-brand text-center text-white" href="/home">STAR</a>
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -124,48 +116,30 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
-
-                        <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline">Admin</span>
-                                <img class="img-profile rounded-circle"
-                                    src={% static "img/avatar.png" %}>
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="profile">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <div class="dropdown-divider"></div>
-
-                                <a class="dropdown-item" href="register">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Register
-                                </a>
-                                <div class="dropdown-divider"></div>
-
-                                <a class="dropdown-item" href="login">
-                                    <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Log In
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="login">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Log Out
-                                </a>
-                            </div>
+                            <a href="/register" class="nav-link dropdown-toggle">Register</a>
                         </li>
-
+                        {% if request.session.username %}
+                        <li class="nav-item dropdown no-arrow">
+                            <a href="/logout" class="nav-link dropdown-toggle">Log Out</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item dropdown no-arrow">
+                            <a href="/login" class="nav-link dropdown-toggle">Log In</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item dropdown no-arrow">
+                            <a href="/profile" class="nav-link dropdown-toggle">
+                                <span class="mr-2 d-none d-lg-inline">{{ request.session.username }}</span>
+                                <img class="img-profile rounded-circle"
+                                    src="{% static '/img/avatar.png' %}">
+                            </a>
+                        </li>                        
                     </ul>
 
                 </nav>
                 <!-- End of Topbar -->
+
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid bg-star">
@@ -174,111 +148,39 @@
                             <div class="p-5">
                                 <div class="text-center text-white">
                                     <br><br>  
-                                    <h1>My Project</h1>
+                                    <h1>Manage Project</h1>
                                     <br><br>  
-                                <form action="submit/">
-                                    <input class="display-none" type="text" value="" name="" id="input_value">
-                                    <button class="display-none" type="submit" id="submit_button"></button>
+                                <form action="/join-project/project-info-target?pid=" method="get"></form>
+
                                     <div class="table-responsive">
                                         <table class="text-white table table-active table-bordered">
                                           <thead>
                                             <tr>
-                                              <th>Edit</th>
-                                              <th>Delete</th>
+                                              <th>Manage</th>
                                               <th>PID</th>
-                                              <th>Tittle</th>
+                                              <th>Title</th>
+                                              <th>Type</th>
                                               <th>Description</th>
-                                              <th>Manager</th>
                                               <th>Participants</th>
-                                              <th>Project Type</th>
-                                              <th>PI</th>
-                                              <th>Aperture Upper Limit</th>
-                                              <th>Aperture Lower Limit</th>
-                                              <th>Fo V Upper Limit</th>
-                                              <th>Fo V Lower Limit</th>
-                                              <th>Pixel Scale Upper Limit</th>
-                                              <th>Pixel Scale Lower Limit</th>
-                                              <th>Mount Type (German, Fork, Theodolite)</th>
-                                              <th>Camera Type (Colored, Mono)</th>
-                                              <th>Camera Type (Cooled, Uncooled)</th>
-                                              <th>Johnson B</th>
-                                              <th>Johnson V</th>
-                                              <th>Johnson R</th>
-                                              <th>SDSS u</th>
-                                              <th>SDSS g</th>
-                                              <th>SDSS r</th>
-                                              <th>SDSS i</th>
-                                              <th>SDSS z</th>
                                             </tr>
                                           </thead>
                                           <tbody>
-                                            <tr>
+                                            {% for project in projects %}
+                                            <tr>           
                                                 <td>
-                                                    <button  class="btn "><a href="edit-project-pid">
-                                                        <i class="fas fa-fw fa-cog text-white"></i>
-                                                        </a></i></button>  
+                                                    <a href="/manage-project/project-info-target-equipment?pid={{ project.pid }}"><i class="fas fa-sign-in-alt text-white"></i></a>
                                                 </td>
-                                                <td>
-                                                    <button type="submit" class="btn " onclick="delete_project(0)"><i class="fas fa-trash text-white"></i></button>  
-                                                </td>                                                
-                                              <td>0</td>
-                                              <td>Galaxy 1</td>
-                                              <td>Observe Galaxy 1</td>
-                                              <td>Jason</td>
-                                              <td>10</td>
-                                              
-                                              <td>255.83816116433158</td>
-                                              <td>2.721238841447313</td>
-                                              <td>0.18709646832735033</td>
-                                              <td>15.540565310137962</td>
-                                              <td>21.128172241369946</td>
-                                              <td>fork</td>
-                                              <td>colored</td>
-                                              <td>cooled</td>
-                                              <td>y</td>
-                                              <td>y</td>
-                                              <td>y</td>
-                                              <td>y</td>
-                                              <td>y</td>
-                                              <td>n</td>
-                                              <td>n</td>
+                                              <td>{{ project.pid }}</td>
+                                              <td>{{ project.title }}</td>
+                                              <td>{{ project.project_type }}</td>
+                                              <td>{{ project.description }}</td>
+                                              <td>{{ project.num_participants }}</td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <button  class="btn "><a href="edit-project-pid">
-                                                        <i class="fas fa-fw fa-cog text-white"></i>
-                                                        </a></i></button>  
-                                                </td>
-                                                <td>
-                                                    <button type="submit" class="btn " onclick="delete_project(0)"><i class="fas fa-trash text-white"></i></button>  
-                                                </td>
-                                                <td>1</td>
-                                                <td>Galaxy 2</td>
-                                                <td>Observe Galaxy 2</td>
-                                                <td>Lilian</td>
-                                                <td>15</td>
-                                                <td>15.8381611</td>
-                                                <td>213</td>
-                                                <td>12</td>
-                                                <td>255.83816116433158</td>
-                                                <td>2.721238841447313</td>
-                                                <td>0.18709646832735033</td>
-                                                <td>15.540565310137962</td>
-                                                <td>21.128172241369946</td>
-                                                <td>fork</td>
-                                                <td>colored</td>
-                                                <td>cooled</td>
-                                                <td>y</td>
-                                                <td>y</td>
-                                                <td>y</td>
-                                                <td>y</td>
-                                                <td>y</td>
-                                                <td>n</td>
-                                                <td>n</td>
-                                              </tr>
+                                            {% endfor %}
+
                                           </tbody>
                                         </table>
-                                        <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                                        <br><br><br><br><br><br><br><br>
                                     </div>   
                                     </div>
                                 </form>
