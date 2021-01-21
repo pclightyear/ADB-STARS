@@ -8,11 +8,28 @@ from .Declination_limit_of_location import declination_limit
 from .Astroplan_calculations import astroplan_calculations
 from django.utils.decorators import method_decorator
 from django.contrib import auth
+
+from neo4j import GraphDatabase
 # Create your views here.
 
 """
     Utils
 """
+def _create_and_return_greeting(tx, message):
+        result = tx.run("CREATE (a:Greeting) "
+                        "SET a.message = $message "
+                        "RETURN a.message + ', from node ' + id(a)", message=message)
+        return result.single()[0]
+
+def neo4jdb_test(request):
+    driver = GraphDatabase.driver('bolt://localhost:7687', auth=("neo4j", "1234"))
+    with driver.session() as session:
+        greeting = session.write_transaction(_create_and_return_greeting,"hello, world")
+        print(greeting)
+    driver.close()
+    return HttpResponse(greeting)
+
+
 def getuid(request):
     try:
         return str(request.session['uid'])
@@ -97,7 +114,7 @@ def profile_submit(request):
     
     print(res)
 
-    return HttpResponseRedirect("../profile")
+    return HttpResponseRedirect("/profile")
     
 
 """
@@ -129,7 +146,7 @@ def register_submit(request):
         except(IndexError):
             result = []
             result.append({'success' : False})
-    return HttpResponseRedirect("../login")
+    return HttpResponseRedirect("/login")
 """
     Log In
 """
@@ -150,7 +167,7 @@ def login_submit(request):
         except(IndexError):
             data = []
             data.append({'success': False})
-    return HttpResponseRedirect("../home")
+    return HttpResponseRedirect("/home")
 
 """
     Log Out
@@ -161,7 +178,7 @@ def logout(request):
         del request.session['username']
     except(KeyError):
         pass
-    return HttpResponseRedirect("../login")
+    return HttpResponseRedirect("/login")
 """
     Home
 """
@@ -245,7 +262,7 @@ def home_project_info_target_submit(request):
         except(IndexError):
             result = []
             result.append({'success' : False})
-    return HttpResponseRedirect("../home")
+    return HttpResponseRedirect("/home")
 
 """
     Project
@@ -412,7 +429,7 @@ def create_project_submit(request):
         except(IndexError):
             result = []
             result.append({'success' : False})
-    return HttpResponseRedirect("../manage-project")
+    return HttpResponseRedirect("/manage-project")
 
 
 
@@ -613,7 +630,7 @@ def equipment_add_equipment_submit(request):
         except(IndexError):
             result = []
             result.append({'success' : False})
-    return HttpResponseRedirect("../equipment")
+    return HttpResponseRedirect("/equipment")
 
 """
     Relation
