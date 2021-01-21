@@ -618,6 +618,8 @@ def equipment_add_equipment_submit(request):
             cursor.execute("SELECT max(eid) FROM equipment_db")
             data = processData(cursor)
             eid = str(int(data[0]['max']) + 1)
+            cursor.execute("SELECT max(\"UhaveE_ID\") FROM own_db")
+            UhaveE_ID = str(int(processData(cursor)[0]['max']) + 1)
             cursor.execute(
                 "INSERT INTO equipment_db(eid,aperture,fov,pixel_scale,tracking_accuracy,limiting_magnitude,elevation_limit,mount_type," +
                 "camera_type_colored_mono,camera_type_cooled_uncooled,johnson_b,johnson_v,johnson_r,sdss_u,sdss_g,sdss_r,sdss_i,sdss_z)"
@@ -626,9 +628,9 @@ def equipment_add_equipment_submit(request):
                 + e_Johnson_B + "\',\'" + e_Johnson_V + "\',\'" + e_Johnson_R + "\',\'" + e_SDSS_u + "\',\'"
                 + e_SDSS_g + "\',\'" + e_SDSS_r + "\',\'" + e_SDSS_i + "\',\'" + e_SDSS_z + "\')")
             cursor.execute(
-                "INSERT INTO own_db(uid,eid,site,longitude,latitude,altitude,time_zone,daylight_saving,water_vapor,light_pollution) " +
+                "INSERT INTO own_db(uid,eid,site,longitude,latitude,altitude,time_zone,daylight_saving,water_vapor,light_pollution,\"UhaveE_ID\") " +
                 "VALUES(" + uid + "," + eid + ",\'" + e_site + "\'," + e_longitude + "," + e_latitude + "," + e_altitude + ",\'" + e_time_zone + "\',\'" + e_daylight_saving + "\',"
-                + e_water_vapor + "," + e_light_pollution + ")")
+                + e_water_vapor + "," + e_light_pollution + "," + UhaveE_ID + ")")
             result = []
             result.append({'success' : True})
         except(IndexError):
