@@ -9,9 +9,9 @@ function check_password () {
   var submit_form = document.getElementById("submit_form");
   if (password != password2) {
     alert("Passwords not consist.");    
-    submit_form.addEventListener("submit", function(event){
-      event.preventDefault()
-    });
+    // submit_form.addEventListener("submit", function(event){
+    //   event.preventDefault()
+    // });
 }}
 
 function repeat_password () {        

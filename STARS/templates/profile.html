@@ -33,7 +33,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <!-- <i class="fas fa-laugh-wink"></i> -->
                 </div>
@@ -45,61 +45,49 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="home">
+                <a class="nav-link" href="/home">
                     <i class="fa fa-home"></i>
                     <span>Home</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <!-- <div class="sidebar-heading">
-                Project
-            </div> -->
-
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link" href="/join-project">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Project</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Project Management</h6>
-                        <a class="collapse-item" href="my-project">My Project</a>
-                        <a class="collapse-item" href="all-project">All Project</a>
-                        <a class="collapse-item" href="create-project">Create Project</a>
-                    </div>
-                </div>
+                    <span>Join Project</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/manage-project">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Manage Project</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/create-project">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Create Project</span></a>
             </li>
             <hr class="sidebar-divider">
-
-            <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link" href="/equipment">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Equipment</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Equipment Management</h6>
-                        <a class="collapse-item" href="my-equipment">My Equipment</a>
-                        <a class="collapse-item" href="all-equipment">All Equipment</a>
-                        <a class="collapse-item" href="add-equipment">Add Equipment</a>
-                    </div>
-                </div>
+                    <span>Equipment</span></a>
             </li>
+
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="create-project">
+                <a class="nav-link" href="/schedule">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Schadule</span></a>
+            </li>
+            <hr class="sidebar-divider">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/relation">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Relation</span></a>
             </li>
             <hr class="sidebar-divider">
 
@@ -128,44 +116,19 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
-
-                        <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline">Admin</span>
-                                <img class="img-profile rounded-circle"
-                                    src={% static "img/avatar.png" %}>
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="profile">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <div class="dropdown-divider"></div>
-
-                                <a class="dropdown-item" href="register">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Register
-                                </a>
-                                <div class="dropdown-divider"></div>
-
-                                <a class="dropdown-item" href="login">
-                                    <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Log In
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="login">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Log Out
-                                </a>
-                            </div>
+                            <a href="register" class="nav-link dropdown-toggle">Register</a>
                         </li>
-
+                        <li class="nav-item dropdown no-arrow">
+                            <a href="login" class="nav-link dropdown-toggle">Log In</a>
+                        </li>
+                        <li class="nav-item dropdown no-arrow">
+                            <a href="profile" class="nav-link dropdown-toggle">
+                                <span class="mr-2 d-none d-lg-inline">Profile</span>
+                                <img class="img-profile rounded-circle"
+                                    src="{% static '/img/avatar.png' %}">
+                            </a>
+                        </li>
                     </ul>
 
                 </nav>
@@ -181,80 +144,58 @@
                                     <br><br>  
                                     <h1>Profile</h1>
                                     <br><br>  
-                                <form action="upload.php">
-                                    <img class="img-fluid rounded-circle" src={% static "img/avatar.png" %} alt="avatar" width="100" height="100"> 
+                                <form action="/profile/submit" method="post" id="submit_form">
+                                    <img class="img-fluid rounded-circle" src="{% static 'img/avatar.png' %}" alt="avatar" width="100" height="100"> 
                                     <br><br>
 
                                     <!-- <input type="file" id="myfile" name="myfile" multiple> -->
                                     <br><br>
+                                    <div class="form-group row has-feedback">
+                                        <div class="col">
+                                            <label class="text-white" for="username">Username</label>
+                                            <input type="text" class="form-control" id="username" name="username" value="{{ username }}">
+                                        </div>
+                                        <div class="col">
+                                            <label class="text-white" for="name">Name</label>
+                                            <input type="text" class="form-control" id="name" name="name" value="{{ name }}">
+                                        </div>
+                                    </div>
 
                                     <div class="form-group row has-feedback">
-                                        <div class="col-lg-6">
-                                            <label class="text-white" for="aperture">UID</label>
-                                            <input type="text"  class="form-control" id="uid" value="001" disabled>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label class="text-white" for="mag">Email</label>
-                                            <input type="email" class="form-control" id="email" value="admin@gmail.com" disabled>
-                                        </div>
-                                    </div>                                    
-                                    <div class="form-group row">
-                                        <div class="col-lg-6">
-                                            <label class="text-white" for="aperture">Name</label>
-                                            <input type="text"  class="form-control" id="name" value="admin">
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label class="text-white" for="mount-type">Phone</label>
-                                            <input type="tel" class="form-control" id="phone" value="0912345678">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-lg-6">
-                                            <label class="text-white" for="aperture">Age</label>
-                                            <input type="number"  class="form-control" id="age" value="20">
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label class="text-white" for="mount-type">Birthday</label>
-                                            <input type="date" class="form-control" id="birthday" value="2000-01-01">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-lg-6">
-                                            <label class="text-white" for="aperture">Country</label>
-                                            <input type="text"  class="form-control" id="country" value="Taiwan">
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label class="text-white" for="mount-type">City</label>
-                                            <input type="text" class="form-control" id="city" value="Hsinchu">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-lg-12">
-                                            <label class="text-white" for="aperture">Address</label>
-                                            <input type="text"  class="form-control" id="address" value="300044 新竹市光復路二段101號">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-lg-12">
-                                            <label class="text-white" for="aperture">Website</label>
-                                            <input type="url"  class="form-control" id="website" value="https://www.nthu.edu.tw/">
-                                        </div>
-                                    </div>                                    
-                                    <div class="form-group row">
                                         <div class="col">
-                                            <label class="text-white" for="aperture">Passwords</label>
-                                            <input type="password"  class="form-control" id="password" value="0000" oninput="repeat_password()">
+                                            <label class="text-white" for="email">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email" value="{{email}}">
                                         </div>
                                         <div class="col">
-                                            <label class="text-white" for="mount-type">Repeat Passwords</label>
-                                            <input type="password" class="form-control" id="password2" value="0000">
+                                            <label class="text-white" for="affiliation">Affiliation</label>
+                                            <input type="text" class="form-control" id="affiliation" name="affiliation" value="{{affiliation}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row has-feedback">
+                                        <div class="col">
+                                            <label class="text-white" for="title">Title</label>
+                                            <input type="text" class="form-control" id="title" name="title" value="{{title}}">
+                                        </div>
+                                        <div class="col">
+                                            <label class="text-white" for="country">Country</label>
+                                            <input type="text" class="form-control" id="country" name="country" value="{{country}}">
+                                        </div>
+                                    </div>     
+                                    <div class="form-group row">
+                                        <div class="col">
+                                            <label class="text-white" for="password">Passwords</label>
+                                            <input type="password"  class="form-control" id="password" name="password" value="{{password}}" oninput="repeat_password()">
+                                        </div>
+                                        <div class="col">
+                                            <label class="text-white" for="password2">Repeat Passwords</label>
+                                            <input type="password" class="form-control" id="password2" name="password2" value="{{password}}">
                                         </div>
                                     </div>                                    
                                     <div>
                                         <br><br>
-                                        <button type="submit" class="btn btn-outline-light btn-block">Update</button>
+                                        <button type="submit" class="btn btn-outline-light btn-block" id="" onclick="check_password()">Update</button>
+                                        <br><br><br><br><br>
                                     </div>
-
                                 </form>
                                 </div>
                             </div>
