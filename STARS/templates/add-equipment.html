@@ -33,7 +33,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <!-- <i class="fas fa-laugh-wink"></i> -->
                 </div>
@@ -45,64 +45,58 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="home">
+                <a class="nav-link" href="/home">
                     <i class="fa fa-home"></i>
                     <span>Home</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link" href="/join-project">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Project</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Project Management</h6>
-                        <a class="collapse-item" href="my-project">My Project</a>
-                        <a class="collapse-item" href="all-project">All Project</a>
-                        <a class="collapse-item" href="create-project">Create Project</a>
-                    </div>
-                </div>
+                    <span>Join Project</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/manage-project">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Manage Project</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/create-project">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Create Project</span></a>
             </li>
             <hr class="sidebar-divider">
-
-            <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link" href="/equipment">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Equipment</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Equipment Management</h6>
-                        <a class="collapse-item" href="my-equipment">My Equipment</a>
-                        <a class="collapse-item" href="all-equipment">All Equipment</a>
-                        <a class="collapse-item" href="add-equipment">Add Equipment</a>
-                    </div>
-                </div>
+                    <span>Equipment</span></a>
             </li>
+
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="schedule">
+                <a class="nav-link" href="/schedule">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Schadule</span></a>
             </li>
             <hr class="sidebar-divider">
-            
+
+            <li class="nav-item">
+                <a class="nav-link" href="/relation">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Relation</span></a>
+            </li>
+            <hr class="sidebar-divider">
+
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <br><br>
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -115,7 +109,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow fixed-top">
-                    <a class="navbar-brand text-center text-white" href="home">STAR</a>
+                    <a class="navbar-brand text-center text-white" href="/home">STAR</a>
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -123,44 +117,25 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
-
-                        <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline">Admin</span>
-                                <img class="img-profile rounded-circle"
-                                    src={% static "img/avatar.png" %}>
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="profile">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <div class="dropdown-divider"></div>
-
-                                <a class="dropdown-item" href="register">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Register
-                                </a>
-                                <div class="dropdown-divider"></div>
-
-                                <a class="dropdown-item" href="login">
-                                    <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Log In
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="login">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Log Out
-                                </a>
-                            </div>
+                            <a href="/register" class="nav-link dropdown-toggle">Register</a>
                         </li>
-
+                        {% if request.session.username %}
+                        <li class="nav-item dropdown no-arrow">
+                            <a href="/logout" class="nav-link dropdown-toggle">Log Out</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item dropdown no-arrow">
+                            <a href="/login" class="nav-link dropdown-toggle">Log In</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item dropdown no-arrow">
+                            <a href="/profile" class="nav-link dropdown-toggle">
+                                <span class="mr-2 d-none d-lg-inline">{{ request.session.username }}</span>
+                                <img class="img-profile rounded-circle"
+                                    src="{% static '/img/avatar.png' %}">
+                            </a>
+                        </li>                        
                     </ul>
 
                 </nav>
@@ -176,75 +151,79 @@
                                     <br><br>  
                                     <h1>Add Equipment</h1>
                                     <br><br>  
-                                    <form action="submit/">
+                                    <form action="/equipment/add-equipment/submit" method="post">
                                         <div class="form-group row">
                                             <div class="col">
                                                 <label class="" for="site">Site</label>
-                                                <input type="text"  class="form-control" id="site">
+                                                <input type="text"  class="form-control" id="site" name="site" placeholder="">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col">
                                                 <label class="" for="longitude">Longitude</label>
-                                                <input type="number" step="0.01" class="form-control" id="longitude">
+                                                <input type="number" step="0.01" class="form-control" id="longitude" name="longitude">
                                             </div>
                                             <div class="col">
                                                 <label class="" for="latitude">Latitude</label>
-                                                <input type="number" step="0.01" class="form-control" id="latitude">
+                                                <input type="number" step="0.01" class="form-control" id="latitude" name="latitude">
                                             </div>
                                             <div class="col">
                                                 <label class="" for="altitude">Altitude</label>
-                                                <input type="number" step="0.01" class="form-control" id="altitude">
+                                                <input type="number" step="0.01" class="form-control" id="altitude" name="altitude">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col">
                                                 <label class="" for="time_zone">Time Zone</label>
-                                                <input type="text"  class="form-control" id="time_zone" placeholder="eg: UTC+8">
+                                                <input type="text"  class="form-control" id="time_zone" name="time_zone" placeholder="eg: UTC+8" >
                                             </div>
                                             <div class="col">
                                                 <label class="" for="daylight_saving">Daylight Saving</label>
-                                                <input type="text"  class="form-control" id="daylight_saving">
+                                                <input type="text"  class="form-control" id="daylight_saving" name="daylight_saving" placeholder="">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col">
                                                 <label class="" for="water_vapor">Water Vapor</label>
-                                                <input type="number" step="0.01" class="form-control" id="water_vapor">
+                                                <input type="number" step="0.01" class="form-control" id="water_vapor" name="water_vapor">
                                             </div>
                                             <div class="col">
                                                 <label class="" for="light_pollution">Light Pollution (M/SAS)</label>
-                                                <input type="number" step="0.01" class="form-control" id="light_pollution">
+                                                <input type="number" step="0.01" class="form-control" id="light_pollution" name="light_pollution">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col">
                                                 <label class="" for="aperture">Aperture</label>
-                                                <input type="number" step="0.01" class="form-control" id="aperture">
+                                                <input type="number" step="0.01" class="form-control" id="aperture" name="aperture">
                                             </div>
                                             <div class="col">
-                                                <label class="" for="fov">Fo V</label>
-                                                <input type="number" step="0.01" class="form-control" id="fov">
+                                                <label class="" for="FoV">Fo V</label>
+                                                <input type="number" step="0.01" class="form-control" id="FoV" name="FoV">
                                             </div>
                                             <div class="col">
                                                 <label class="" for="pixel_scale">Pixel Scale</label>
-                                                <input type="number" step="0.01" class="form-control" id="pixel_scale">
+                                                <input type="number" step="0.01" class="form-control" id="pixel_scale" name="pixel_scale">
+                                            </div>
+                                            <div class="col">
+                                                <label class="" for="tracking_accuracy">Tracking Accuracy</label>
+                                                <input type="number" step="0.01" class="form-control" id="tracking_accuracy" name="tracking_accuracy">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-lg-6">
-                                                <label class="text-white" for="mag">Limiting Magnitude (MAG)</label>
-                                                <input type="number" step="0.01" class="form-control" id="mag">
+                                                <label class="text-white" for="limiting_magnitude">Limiting Magnitude (MAG)</label>
+                                                <input type="number" step="0.01" class="form-control" id="limiting_magnitude" name="limiting_magnitude">
                                             </div>
                                             <div class="col-lg-6">
-                                                <label class="text-white" for="deg">Elevation Limit (DEG)</label>
-                                                <input type="number" step="0.01" class="form-control" id="deg">
+                                                <label class="text-white" for="elevation_limit">Elevation Limit (DEG)</label>
+                                                <input type="number" step="0.01" class="form-control" id="elevation_limit" name="elevation_limit">
                                             </div>
                                         </div>                                    
                                         <div class="form-group row">
                                             <div class="col-lg-12">
                                                 <label class="text-white" for="mount_type">Mount Type (German, Fork, Theodolite)</label>
-                                                <select class="form-control" id="colored_mono">
+                                                <select class="form-control" id="mount_type" name="mount_type">
                                                     <option>german</option>
                                                     <option>fork</option>
                                                     <option>theodolite</option>
@@ -253,15 +232,15 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-lg-6">                
-                                                <label for="colored_mono" class="text-white">Camera Type (Colored, Mono)</label>
-                                                <select class="form-control" id="colored_mono">
+                                                <label for="camera_type(colored,mono)" class="text-white">Camera Type (Colored, Mono)</label>
+                                                <select class="form-control" id="camera_type(colored,mono)" name="camera_type(colored,mono)">
                                                     <option>colored</option>
                                                     <option>mono</option> 
                                                 </select>
                                             </div>
                                             <div class="col-lg-6">                
-                                                <label for="cooled_uncooled" class="text-white">Camera Type (Cooled, Uncooled)</label>
-                                                <select class="form-control" id="cooled_uncooled">
+                                                <label for="camera_type(cooled,uncooled)" class="text-white">Camera Type (Cooled, Uncooled)</label>
+                                                <select class="form-control" id="camera_type(cooled,uncooled)" name="camera_type(cooled,uncooled)">
                                                     <option>colored</option>
                                                     <option>uncooled</option>
                                                 </select>
@@ -269,22 +248,22 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-lg-4">                
-                                                <label for="johnson_b" class="text-white">Johnson B</label>
-                                                <select class="form-control" id="johnson_b">
+                                                <label for="Johnson_B" class="text-white">Johnson B</label>
+                                                <select class="form-control" id="Johnson_B" name="Johnson_B">
                                                     <option>y</option>
                                                     <option>n</option>
                                                 </select>
                                             </div>
                                             <div class="col-lg-4">   
-                                                <label for="johnson_v" class="text-white">Johnson V</label>
-                                                <select class="form-control" id="johnson_v">
+                                                <label for="Johnson_V" class="text-white">Johnson V</label>
+                                                <select class="form-control" id="Johnson_V" name="Johnson_V">
                                                     <option>y</option>
                                                     <option>n</option>
                                                 </select>
                                             </div>
                                             <div class="col-lg-4">        
-                                                <label for="johnson_r" class="text-white">Johnson R</label>
-                                                <select class="form-control" id="johnson_r">
+                                                <label for="Johnson_R" class="text-white">Johnson R</label>
+                                                <select class="form-control" id="Johnson_R" name="Johnson_R">
                                                     <option>y</option>
                                                     <option>n</option>
                                                 </select>
@@ -292,36 +271,36 @@
                                         </div>     
                                         <div class="form-group row">
                                             <div class="col">                
-                                                <label for="sdss_u" class="text-white">SDSS u</label>
-                                                <select class="form-control" id="sdss_u">
+                                                <label for="SDSS_u" class="text-white">SDSS u</label>
+                                                <select class="form-control" id="SDSS_u" name="SDSS_u">
                                                     <option>y</option>
                                                     <option>n</option>
                                                 </select>
                                             </div>
                                             <div class="col">                
-                                                <label for="sdss_g" class="text-white">SDSS g</label>
-                                                <select class="form-control" id="sdss_g">
+                                                <label for="SDSS_g" class="text-white">SDSS g</label>
+                                                <select class="form-control" id="SDSS_g" name="SDSS_g">
                                                     <option>y</option>
                                                     <option>n</option>
                                                 </select>
                                             </div>
                                             <div class="col">                
-                                                <label for="sdss_r" class="text-white">SDSS r</label>
-                                                <select class="form-control" id="sdss_r">
+                                                <label for="SDSS_r" class="text-white">SDSS r</label>
+                                                <select class="form-control" id="SDSS_r" name="SDSS_r">
                                                     <option>y</option>
                                                     <option>n</option>
                                                 </select>
                                             </div>
                                             <div class="col">                
-                                                <label for="sdss_i" class="text-white">SDSS i</label>
-                                                <select class="form-control" id="sdss_i">
+                                                <label for="SDSS_i" class="text-white">SDSS i</label>
+                                                <select class="form-control" id="SDSS_i" name="SDSS_i">
                                                     <option>y</option>
                                                     <option>n</option>
                                                 </select>
                                             </div>
                                             <div class="col">                
-                                                <label for="sdss_z" class="text-white">SDSS z</label>
-                                                <select class="form-control" id="sdss_z">
+                                                <label for="SDSS_z" class="text-white">SDSS z</label>
+                                                <select class="form-control" id="SDSS_z" name="SDSS_z">
                                                     <option>y</option>
                                                     <option>n</option>
                                                 </select>
