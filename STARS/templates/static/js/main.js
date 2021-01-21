@@ -1,12 +1,17 @@
+function show_spinner() {
+  document.getElementById("schedule_form").style.visibility = "hidden";
+  document.getElementById("spinner-border").style.visibility = "visible";
+}
+
 function check_password () {
   var password = document.getElementById("password").value;
   var password2 = document.getElementById("password2").value;
   var submit_form = document.getElementById("submit_form");
   if (password != password2) {
     alert("Passwords not consist.");    
-    submit_form.addEventListener("submit", function(event){
-      event.preventDefault()
-    });
+    // submit_form.addEventListener("submit", function(event){
+    //   event.preventDefault()
+    // });
 }}
 
 function repeat_password () {        

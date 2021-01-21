@@ -369,6 +369,63 @@ def manage_project(request):
 
     return render(request,'manage-project.html',{'projects':res})
 
+def manage_project_info(request):
+    pid = request.GET['pid']
+    res = {}
+
+    sql_q = \
+    """
+        SELECT * 
+        FROM project_db
+        WHERE pid={pid}
+    """.format(pid=pid)
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql_q)
+        project = processData(cursor)[0]
+
+    sql_t = \
+    """
+        SELECT t.tid, t.Name as targetName, t.longitude, t.latitude
+        FROM target_db as t
+        INNER JOIN (
+            SELECT tid
+            FROM observe_db 
+            WHERE pid = {pid} 
+        ) as o
+        ON t.tid = o.tid
+    """.format(pid=pid)
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql_t)
+        targets = processData(cursor)
+
+    sql_e = \
+    """
+        SELECT u.uid, u.username, o.eid, o.site
+        FROM user_db as u, own_db as o
+        WHERE u.uid = o.uid 
+            AND u.uid IN (
+                SELECT uid
+                FROM participate_db
+                WHERE pid={pid}
+            )
+    """.format(pid=pid)
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql_e)
+        equipments = processData(cursor)
+
+    res = {
+        "projectInfo": project,
+        "targets": targets,
+        "equipments": equipments
+    }
+
+    print(res)
+
+    return render(request, 'project-info-target-equipment.html', res)
+
 def create_project(request):
     return render(request, 'create-project.html')
 
@@ -553,6 +610,7 @@ def target_schedule(request):
         cursor.execute(sql_t)
         targets = processData(cursor)
 
+    schedules = []
     for t in targets:
         TID = t['tid']
         ra = t['longitude'] # longitude
@@ -575,7 +633,8 @@ def target_schedule(request):
         t['observationTime_Begin'] = t_start
         t['observationTime_End'] = t_end
 
-    schedules = deepcopy(targets)
+        if not isinstance(t_start, float) and not isinstance(t_end, float):
+            schedules.append(t)
 
     res = {
         "project": project,

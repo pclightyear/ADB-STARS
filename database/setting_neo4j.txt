@@ -1,0 +1,17 @@
+Insert User_db.csv into neo4j:
+LOAD CSV WITH HEADERS FROM "file:///User_db.csv" AS line CREATE (u:User {uid:line.UID, name:line.name, username:line.username,email:line.email,password:line.password,title:line.title,affiliation:line.affiliation,coutry:line.country})
+
+Insert Project_db.csv into neo4j:
+LOAD CSV WITH HEADERS FROM "file:///Project_db.csv" AS line CREATE (p:Project {pid:line.PID, tilte:line.title, project_type:line.project_type,description:line.description,aperture_upper_limit:line.aperture_upper_limit,aperture_lower_limit:line.aperture_lower_limit,fov_upper_limit:line.FoV_upper_limit,fov_lower_limit:line.FoV_lower_limit,pixel_scale_upper_limit:line.pixel_scale_upper_limit,pixel_scale_lower_limit:line.pixel_scale_lower_limit,mount_type:line.mount_type,camera_type_cooled_uncooled:line.camera_type_cooled_uncooled,camera_type_colored_mono:line.camera_type_colored_mono,johnson_b:line.Johnson_B,johnson_v:line.Johnson_V,johnson_r:line.Johnson_R,sdss_u:line.SDSS_u,sdss_g:line.SDSS_g,sdss_r:line.SDSS_r,sdss_i:line.SDSS_i,sdss_z:line.SDSS_z})
+
+Counstruct manage relation in neo4j:
+LOAD CSV WITH HEADERS FROM "file:///Manage_db.csv" AS line MATCH (u:User {uid:line.UID}),(p:Project {pid:line.PID}) CREATE (u)-[r:Manage]->(p) RETURN type(r)
+
+Construct participate relation in neo4j:
+LOAD CSV WITH HEADERS FROM "file:///Participate_db.csv" AS line MATCH (u:User {uid:line.UID}),(p:Project {pid:line.PID}) CREATE (u)-[r:Participate]->(p) RETURN type(r)
+
+Query two hop relation:
+MATCH (a:User{uid:'0'})-[r1:Manage|Participate]->(p:Project)<-[r2:Manage|Participate]-(u:User)-[r3:Participate]->(p2:Project) return a,r1,p,r2,u,r3,p2
+
+Query two hop projects:
+MATCH (u:User{uid:'0'})-[r:Participate*3]-(p:Project)return distinct(p)

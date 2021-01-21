@@ -144,52 +144,45 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid bg-star">
                     <div class="row">
-                        res = {
-                            "project": project,
-                            "schedules": schedules
-                        }
-                        <div class="col-4"></div>
-                        <div class="col">
-                            <div>
-                                {{ project }}
-                                <br><br>
-                            </div>
+                        <div class="col-12">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <br><br>  
+                                    <h1>Target Schedule</h1>
+                                    <br><br>  
+                                    <div class="table-responsive">
+                                        <table class="text-white table table-active table-bordered">
+                                          <thead>
+                                            <tr>
+                                              <th>TID</th>
+                                              <th>Target Name</th>
+                                              <th>Longitude</th>
+                                              <th>Latitude</th>
+                                              <th>Observation Time Begin</th>
+                                              <th>Observation Time End</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                              {% for schedule in schedules %}
+                                            <tr>
+                                              <td>{{ schedule.tid }}</td>
+                                              <td>{{ schedule.targetname }}</td>
+                                              <td>{{ schedule.longitude }}</td>
+                                              <td>{{ schedule.latitude }}</td>
+                                              <td>{{ schedule.observationTime_Begin }}</td>
+                                              <td>{{ schedule.observationTime_End }}</td>
 
-                            <div>
-                                {% for schedule in schedules %}
-                                <p>{{ schedule }}</p>
-                                <br>
-                                {% endfor %}
+                                            </tr>
+                                              {% endfor %}
+                                          </tbody>
+                                        </table>
+                                    </div>   
+                                    </div>
+                                </div>
                             </div>
-                            <!-- <form action="/schedule/submit" method="post">
-                                <div id="projectSelectDiv" class="form-group">
-                                    <select id="pid" class="form-control" name="pid">
-                                        {% for project in projects %}
-                                        <option>{{project.pid}} {{project.title}}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-    
-                                <div id="equipmentSelectDiv" class="form-group">
-                                    <select id="eid" class="form-control" name="eid">
-                                        {% for equipment in equipments %}
-                                        <option>{{equipment.eid}} {{equipment.site}}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <br><br>
-                                    <button type="submit" class="btn btn-outline-light btn-block" onclick="updateShifts()">View Schedule</button>
-                                    <br><br>
-                                </div>
-                            </form> -->
                         </div>
-                        <div class="col-4"></div>
                     </div>
-
                 </div>
-                <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
 
