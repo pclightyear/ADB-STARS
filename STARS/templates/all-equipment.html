@@ -1,0 +1,266 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>STAR</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2.css' %}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <!-- <i class="fas fa-laugh-wink"></i> -->
+                </div>
+                <div class="sidebar-brand-text mx-3">STAR</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="/home">
+                    <i class="fa fa-home"></i>
+                    <span>Home</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+                <a class="nav-link" href="/join-project">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Join Project</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/manage-project">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Manage Project</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/create-project">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Create Project</span></a>
+            </li>
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+                <a class="nav-link" href="/equipment">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Equipment</span></a>
+            </li>
+
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="/schedule">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Schadule</span></a>
+            </li>
+            <hr class="sidebar-divider">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/relation">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Relation</span></a>
+            </li>
+            <hr class="sidebar-divider">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <br><br>
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow fixed-top">
+                    <a class="navbar-brand text-center text-white" href="/home">STAR</a>
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown no-arrow">
+                            <a href="/register" class="nav-link dropdown-toggle">Register</a>
+                        </li>
+                        {% if request.session.username %}
+                        <li class="nav-item dropdown no-arrow">
+                            <a href="/logout" class="nav-link dropdown-toggle">Log Out</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item dropdown no-arrow">
+                            <a href="/login" class="nav-link dropdown-toggle">Log In</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item dropdown no-arrow">
+                            <a href="/profile" class="nav-link dropdown-toggle">
+                                <span class="mr-2 d-none d-lg-inline">{{ request.session.username }}</span>
+                                <img class="img-profile rounded-circle"
+                                    src="{% static '/img/avatar.png' %}">
+                            </a>
+                        </li>                        
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid bg-star">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <br><br>  
+                                    <h1>Equipment</h1>
+                                    <br><br>  
+                                    <div class="table-responsive">
+                                        <table class="text-white table table-active table-bordered">
+                                          <thead>
+                                            <tr>
+                                              <th>EID</th>
+                                              <th>Site</th>
+                                              <th>Longitude</th>
+                                              <th>Latitude</th>
+                                              <th>Altitude</th>
+                                              <th>Time Zone</th>
+                                              <th>Daylight Saving</th>
+                                              <th>Water Vapor</th>
+                                              <th>Light Pollution (M/SAS)</th>
+                                              <th>Aperture</th>
+                                              <th>Fo V</th>
+                                              <th>Pixel Scale</th>
+                                              <th>Tracking Accuracy</th>
+                                              <th>Limiting Magnitude (MAG)</th>
+                                              <th>Elevation Limit (DEG)</th>
+                                              <th>Mount Type (German, Fork, Theodolite)</th>
+                                              <th>Camera Type (Colored, Mono)</th>
+                                              <th>Camera Type (Cooled, Uncooled)</th>
+                                              <th>Johnson B</th>
+                                              <th>Johnson V</th>
+                                              <th>Johnson R</th>
+                                              <th>SDSS u</th>
+                                              <th>SDSS g</th>
+                                              <th>SDSS r</th>
+                                              <th>SDSS i</th>
+                                              <th>SDSS z</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                              {% for equipment in equipments %}
+                                            <tr>
+                                              <td>{{ equipment.eid }}</td>
+                                              <td>{{ equipment.site }}</td>
+                                              <td>{{ equipment.longitude }}</td>
+                                              <td>{{ equipment.latitude }}</td>
+                                              <td>{{ equipment.altitude }}</td>
+                                              <td>{{ equipment.time_zone }}</td>
+                                              <td>{{ equipment.daylight_saving }}</td>
+                                              <td>{{ equipment.water_vapor }}</td>
+                                              <td>{{ equipment.light_pollution }}</td>
+                                              <td>{{ equipment.aperture }}</td>
+                                              <td>{{ equipment.fov }}</td>
+                                              <td>{{ equipment.pixel_scale }}</td>
+                                              <td>{{ equipment.tracking_accuracy }}</td>
+                                              <td>{{ equipment.limiting_magnitude }}</td>
+                                              <td>{{ equipment.elevation_limit }}</td>
+                                              <td>{{ equipment.mount_type }}</td>
+                                              <td>{{ equipment.camera_type_colored_mono }}</td>
+                                              <td>{{ equipment.camera_type_cooled_uncooled }}</td>
+                                              <td>{{ equipment.johnson_b }}</td>
+                                              <td>{{ equipment.johnson_v }}</td>
+                                              <td>{{ equipment.johnson_r }}</td>
+                                              <td>{{ equipment.sdss_u }}</td>
+                                              <td>{{ equipment.sdss_g }}</td>
+                                              <td>{{ equipment.sdss_r }}</td>
+                                              <td>{{ equipment.sdss_i }}</td>
+                                              <td>{{ equipment.sdss_z }}</td>
+
+                                              </tr>
+                                              {% endfor %}
+                                          </tbody>
+                                        </table>
+                                        <div class="form-group row">
+                                            <div class="col-4"></div>
+                                        <div class="col-4">
+                                            <br><br>
+                                            <a href="/equipment/add-equipment" class="btn btn-outline-light btn-block">Add  Equipment</a>
+                                            <br><br>
+                                        </div>
+                                        </div>
+                                        <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                                    </div>   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+</body>
+
+</html>
+<script src="{% static 'js/main.js' %}"></script>
