@@ -15,6 +15,17 @@ from neo4j import GraphDatabase
 """
     Utils
 """
+driver = GraphDatabase.driver('bolt://localhost:7687', auth=("neo4j", "1234"))
+
+def get_two_hop_projects(tx,request):
+    uid = getuid(request)
+    print("uid in get_two_hop_projects: " + uid)
+    result = tx.run("MATCH (u:User{uid:$uid})-[r:Participate*3]-(p:Project) return distinct(p)",uid=uid)
+    two_hop_pid = []
+    for record in result.data():
+        two_hop_pid.append(int(record['p']['pid']))
+    return two_hop_pid
+        
 
 def _create_and_return_greeting(tx, message):
         result = tx.run("CREATE (a:Greeting) "
@@ -23,12 +34,9 @@ def _create_and_return_greeting(tx, message):
         return result.single()[0]
 
 def neo4jdb_test(request):
-    driver = GraphDatabase.driver('bolt://localhost:7687', auth=("neo4j", "1234"))
     with driver.session() as session:
-        greeting = session.write_transaction(_create_and_return_greeting,"hello, world")
-        print(greeting)
-    driver.close()
-    return HttpResponse(greeting)
+       session.read_transaction(get_two_hop_projects,request)
+    return HttpResponse("test neo4j")
 
 
 def getuid(request):
@@ -194,6 +202,8 @@ def home(request):
     available_project_description = []
     results = []
     participating_pid = []
+    with driver.session() as session:
+       two_hop_pid = session.read_transaction(get_two_hop_projects,request)
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM equipment_db AS e JOIN own_db AS o ON e.eid = o.eid WHERE o.uid = " + uid)
         equipments = processData(cursor)
@@ -226,14 +236,14 @@ def home(request):
                 )
                 projects = processData(cursor)
                 for project in projects:
-                    if project['pid'] in available_project_id or project['pid'] in participating_pid:
+                    if project['pid'] in available_project_id or project['pid'] in participating_pid or project['pid'] not in two_hop_pid:
                         continue
                     else:
                         available_project_id.append(project['pid'])
                         results.append(project)
 
 
-    #print(data)
+    print(len(results))
     return render(request,'home.html',{'projects':results})
 
 def home_project_info_target(request):
