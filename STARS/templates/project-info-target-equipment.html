@@ -160,7 +160,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link text-white" data-toggle="pill" href="#equipment">Equipment</a>
-                                          </li>
+                                        </li>
 
                                     </ul>
                                     <br><br>
@@ -344,21 +344,21 @@
                                                 <table class="text-white table table-active table-bordered" id="target_table">
                                                     <thead>
                                                         <tr>
-                                                            <th>TID
+                                                            <th>UID
                                                             </th>
-                                                            <th>Target
+                                                            <th>Username
                                                             </th>
-                                                            <th>RA (Longitude)</th>
-                                                            <th>Dec (Latitude)</th>
+                                                            <th>EID</th>
+                                                            <th>Site</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         {% for equipment in equipments %}
                                                         <tr>
-                                                            <th><input type="text"  class="form-control" id="target_name" value="{{ target.tid }}" disabled></th>
-                                                            <th><input type="text"  class="form-control" id="target_name" value="{{ target.targetname }}" disabled></th>
-                                                            <th><input type="number" step="0.01"  class="form-control" id="ra" value="{{ target.longitude }}" disabled></th>
-                                                            <th><input type="number" step="0.01"  class="form-control" id="dec" value="{{ target.latitude }}" disabled></th>
+                                                            <th><input type="text"  class="form-control" id="target_name" value="{{ equipment.uid }}" disabled></th>
+                                                            <th><input type="text"  class="form-control" id="target_name" value="{{ equipment.username }}" disabled></th>
+                                                            <th><input type="number" step="0.01"  class="form-control" id="ra" value="{{ equipment.eid }}" disabled></th>
+                                                            <th><input type="number" step="0.01"  class="form-control" id="dec" value="{{ target.site }}" disabled></th>
                                                         </tr>
                                                         {% endfor %}
                                                     </tbody>
@@ -367,13 +367,7 @@
                                             </div>
 
                                         </div>
-                                        <div>
-                                            <br><br>
-                                            <button type="submit" class="btn btn-outline-light btn-block">Join Project</button>
-                                            <br><br>
-                                        </div>
-                                        
-                                        
+                                                                            
                                     </form>
 
                                 </div>
