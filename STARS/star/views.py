@@ -5,11 +5,28 @@ from django.db import connection
 from .Declination_limit_of_location import declination_limit
 from django.utils.decorators import method_decorator
 from django.contrib import auth
+
+from neo4j import GraphDatabase
 # Create your views here.
 
 """
     Utils
 """
+def _create_and_return_greeting(tx, message):
+        result = tx.run("CREATE (a:Greeting) "
+                        "SET a.message = $message "
+                        "RETURN a.message + ', from node ' + id(a)", message=message)
+        return result.single()[0]
+
+def neo4jdb_test(request):
+    driver = GraphDatabase.driver('bolt://localhost:7687', auth=("neo4j", "1234"))
+    with driver.session() as session:
+        greeting = session.write_transaction(_create_and_return_greeting,"hello, world")
+        print(greeting)
+    driver.close()
+    return HttpResponse(greeting)
+
+
 def getuid(request):
     try:
         return str(request.session['uid'])
@@ -237,7 +254,7 @@ def home_project_info_target_submit(request):
     with connection.cursor() as cursor:
         try:
             cursor.execute(
-                "INSERT INTO user_db(uid,pid)"
+                "INSERT INTO participate_db(uid,pid)"
                 + " VALUES(" + str(uid) + ",\'" + str(pid) + "\')")
             result = []
             result.append({'success' : True})

@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index),
+    path('neo4jdb_test', views.neo4jdb_test),
     path('test_db', views.test_db),
     path('profile', views.profile),
     path('profile/submit', views.profile_submit),
