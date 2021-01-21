@@ -19,6 +19,7 @@ urlpatterns = [
     path('join-project', views.join_project),
     path('join-project/project-info-target', views.join_project_info),
     path('manage-project', views.manage_project),
+    path('manage-project/project-info-target-equipment', views.manage_project_info),
     path('create-project', views.create_project),
     path('create-project/submit', views.create_project_submit),
     path('schedule', views.schedule),
