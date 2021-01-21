@@ -27,4 +27,5 @@ urlpatterns = [
     path('equipment/', views.equipment),
     path('equipment/add-equipment', views.add_equipment),
     path('equipment/add-equipment/submit', views.equipment_add_equipment_submit),
+    path('relation',views.relation)
 ]

@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>DataViz</title>
+    <style type="text/css">
+        #viz {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script src="https://cdn.neo4jlabs.com/neovis.js/v1.5.0/neovis.js"></script>
+
+</head>
+<body onload="draw()">
+    <div id="viz"></div>
+
+    <script>
+        function draw() {
+
+            var config = {
+                container_id: "viz",
+                server_url: "bolt://localhost:7687",
+                server_user: "neo4j",
+                server_password: "1234",
+                labels: {
+                    "User": {
+                    },
+                    "Project" :{
+                    }
+                },
+                relationships: {
+                    "Participate":{
+                    }
+                },
+                initial_cypher: "MATCH (u1:User{uid:'0'})-[r1:Participate*1]->(p1:Project)<-[r2:Participate*1]-(u2:User) WHERE u1.uid <> u2.uid return u1,r1,p1,r2,u2",
+                arrows: true
+            }
+
+            var viz = new NeoVis.default(config);
+            viz.render();
+        }
+    </script>
+</body>
+</html>

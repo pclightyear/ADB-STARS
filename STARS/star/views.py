@@ -714,3 +714,5 @@ def equipment_add_equipment_submit(request):
 """
     Relation
 """
+def relation(request):
+    return render(request, 'relation.html')
