@@ -1,3 +1,8 @@
+function show_spinner() {
+  document.getElementById("schedule_form").style.visibility = "hidden";
+  document.getElementById("spinner-border").style.visibility = "visible";
+}
+
 function check_password () {
   var password = document.getElementById("password").value;
   var password2 = document.getElementById("password2").value;

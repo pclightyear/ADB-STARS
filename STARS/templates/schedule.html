@@ -140,37 +140,49 @@
 
                 </nav>
                 <!-- End of Topbar -->
+              
 
-                <!-- Begin Page Content -->
                 <div class="container-fluid bg-star">
-                    <div class="row">
-                        <div class="col-4"></div>
-                        <div class="col">
-                            <form action="/schedule/target-schedule" method="get">
-                                <div id="projectSelectDiv" class="form-group">
-                                    <select id="pid" class="form-control" name="pid">
+                        <div class="row text-center text-white">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-8">
+                                <br><br><br><br>
+                                <h1>Target Schedule</h1>
+                                <br><br><br><br>
+
+                            <form action="/schedule/target-schedule" method="get" id="schedule_form">
+                                
+                                <div class="form-group row">
+                                    <div class="col">
+                                        <label class="" for="project_type">Project</label>
+                                        <select id="pid" class="form-control" name="pid">
                                         {% for project in projects %}
                                         <option>{{project.pid}} {{project.title}}</option>
                                         {% endfor %}
-                                    </select>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label class="" for="project_type">Equipment</label>
+                                        <select id="eid" class="form-control" name="eid">
+                                            {% for equipment in equipments %}
+                                            <option>{{equipment.eid}} {{equipment.site}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+    
                                 </div>
     
-                                <div id="equipmentSelectDiv" class="form-group">
-                                    <select id="eid" class="form-control" name="eid">
-                                        {% for equipment in equipments %}
-                                        <option>{{equipment.eid}} {{equipment.site}}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
 
                                 <div>
-                                    <br>
-                                    <input type="submit" class="btn btn-outline-light btn-block" value="View Schedule"></button>
+                                    <br><br>
+                                    <input type="submit" class="btn btn-outline-light btn-block" value="View Schedule" onclick="show_spinner()"></button>
+                                    <br><br>
+
                                 </div>
                             </form>
+                            <div class="spinner-border text-light" style="visibility: hidden;" id="spinner-border"></div>
                         </div>
-                        <div class="col-4"></div>
-                    </div>
+                        </div>
 
                 </div>
                 <!-- /.container-fluid -->
