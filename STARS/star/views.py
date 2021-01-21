@@ -114,7 +114,7 @@ def profile_submit(request):
     
     print(res)
 
-    return HttpResponseRedirect("../profile")
+    return HttpResponseRedirect("/profile")
     
 
 """
@@ -146,7 +146,7 @@ def register_submit(request):
         except(IndexError):
             result = []
             result.append({'success' : False})
-    return HttpResponseRedirect("../login")
+    return HttpResponseRedirect("/login")
 """
     Log In
 """
@@ -167,7 +167,7 @@ def login_submit(request):
         except(IndexError):
             data = []
             data.append({'success': False})
-    return HttpResponseRedirect("../home")
+    return HttpResponseRedirect("/home")
 
 """
     Log Out
@@ -178,7 +178,7 @@ def logout(request):
         del request.session['username']
     except(KeyError):
         pass
-    return HttpResponseRedirect("../login")
+    return HttpResponseRedirect("/login")
 """
     Home
 """
@@ -256,13 +256,13 @@ def home_project_info_target_submit(request):
         try:
             cursor.execute(
                 "INSERT INTO participate_db(uid,pid)"
-                + " VALUES(" + str(uid) + ",\'" + str(pid) + "\')")
+                + " VALUES(" + str(uid) + "," + str(pid) + ")")
             result = []
             result.append({'success' : True})
         except(IndexError):
             result = []
             result.append({'success' : False})
-    return HttpResponseRedirect("../home")
+    return HttpResponseRedirect("/home")
 
 """
     Project
@@ -429,7 +429,7 @@ def create_project_submit(request):
         except(IndexError):
             result = []
             result.append({'success' : False})
-    return HttpResponseRedirect("../manage-project")
+    return HttpResponseRedirect("/manage-project")
 
 
 
@@ -630,7 +630,7 @@ def equipment_add_equipment_submit(request):
         except(IndexError):
             result = []
             result.append({'success' : False})
-    return HttpResponseRedirect("../equipment")
+    return HttpResponseRedirect("/equipment")
 
 """
     Relation
